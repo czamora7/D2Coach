@@ -2,10 +2,10 @@ Description: D2 Coach is a  web-based application that suggests useful loadout c
 
 
 Team:
-Brennen Kane-Christensen
-Alou Sidibe
-Cameron Zamora
-Nehemiah Fields
+Brennen Kane-Christensen  
+Alou Sidibe  
+Cameron Zamora  
+Nehemiah Fields  
 
 How to obtain the source code: //TODO: update this when we have source code
 
