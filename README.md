@@ -7,6 +7,10 @@ Alou Sidibe
 Cameron Zamora  
 Nehemiah Fields  
 
+Front-End Framework: \
+Database Schema: \
+Webserver: \
+
 How to obtain the source code: //TODO: update this when we have source code
 
 Directory Structure: //TODO make a diagram of this when we have a repo structure
