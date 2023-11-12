@@ -1,0 +1,37 @@
+Notable Tables to Keep Track of from Destiny Manifest:
+
+DestinyActivityDefinition
+DestinyActivityModiferDefinition
+DestinyActivityModeDefinition
+DestinyArtifactDefinition
+DestinyBreakerTypeDefinition (Anti-Champion)
+DestinyClassDefinition
+DestinyCollectableDefinition (Seems to contain weapons and armor + cosmetics)
+DestinyDamageTypeDefinition
+DestinyDestinationDefinition (Likely not critical to our project, but included)
+DestinyEquipmentSlotDefinition
+DestinyHistoricalStatsDefinition (Likely not project critical)
+DestinyInventoryBucketDefinition
+DestinyInventoryItemDefinition
+DestinyItemCategoryDefinition
+DestinyItemTierTypeDefinition
+
+DestinyLoadoutColorDefinition
+DestinyLoadoutConstantsDefinition
+DestinyLoadoutIconDefinition
+DestinyLoadoutNameDefinition
+
+DestinyLocationDefinition (Not sure if needed, quite large)
+DestinyMetricDefinition (Stats, could be fun to have if we have time)
+DestinyMilestoneDefinition (Contains info on completing certain activities)
+DestinyPlaceDefinition
+DestinyPlugSetDefinition (Currently unsure of its purpose, but think is useful)
+DestinyPresentationNodeDefinition
+DestinyProgressionLevelRequirementDefinition
+DestinyRaceDefinition
+DestinySandboxPerkDefinition
+DestinySocketCategoryDefinition
+DestinySocketTypeDefinition (Believe this may be useful, but very complicated)
+DestinyStatDefinition
+DestinyStatGroupDefinition
+DestinyTraitDefinition
