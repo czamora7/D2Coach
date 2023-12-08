@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 interface NavBarProperties {
   brandName: string;
   imageSrcPath: string;
   navItems: string[];
+  navLinks: string[];
 }
-function NavBar({ brandName, imageSrcPath, navItems }: NavBarProperties) {
+function NavBar({ brandName, imageSrcPath, navItems, navLinks }: NavBarProperties) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark shadow">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           <img
             src={imageSrcPath}
             width="90"
@@ -26,16 +28,15 @@ function NavBar({ brandName, imageSrcPath, navItems }: NavBarProperties) {
                 className="nav-item"
                 onClick={() => setSelectedIndex(index)}
               >
-                <a
+            <Link to={navLinks[index]}
                   className={
                     selectedIndex == index
                       ? "nav-link active fw-bold"
                       : "nav-link"
                   }
-                  href="#"
-                >
+                  >
                   {items}
-                </a>
+                  </Link>
               </li>
             ))}
           </ul>
