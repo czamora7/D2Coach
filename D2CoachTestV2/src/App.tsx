@@ -8,11 +8,10 @@ import imagePath from "./assets/Images/Tricorn_White.png";
 import Home from './Home';
 import LoadoutBuilder from "./LoadoutBuilder";
 import Vault from "./Vault";
-import Login from "./Login";
 
 function App() {
-  let items = ["Home", "Loadout Builder", "Vault", "Log In"]
-  let links = ["/", "/LoadoutBuilder", "/Vault", "/Login"]
+  let items = ["Home", "Loadout Builder", "Vault"]
+  let links = ["/", "/LoadoutBuilder", "/Vault"]
   return (
     <Router>
       <NavBar
@@ -25,7 +24,6 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/LoadoutBuilder" element={<LoadoutBuilder />} />
       <Route path="/Vault" element={<Vault />} />
-      <Route path="/Login" element={<Login />} />
     </Routes>
     </Router>
   );

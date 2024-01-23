@@ -1,7 +1,10 @@
 import React from 'react';
+import LoginButton from './components/LoginButton';
 
 const Home: React.FC = () => {
-  return <div>Welcome to the Home Page</div>;
+  return <div id='HomePage'> This is the Home Page.
+    <LoginButton />
+  </div>;
 };
 
 export default Home;
