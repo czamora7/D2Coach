@@ -1,12 +1,18 @@
 import { useState } from "react";
 
-const clientId = 45654;
 
 function LoginButton() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const login = () => {
-    window.open("https://www.bungie.net/en/OAuth/Authorize?client_id=" + clientId + "&response_type=code");
+    window.location.href="https://www.bungie.net/en/OAuth/Authorize?client_id=" + window.clientId + "&response_type=code";
+    let url = new URL(window.location.href);
+    let code = url.searchParams.get('code');
+
+    if (code != null) {
+      window.loginCode = code;
+    }
+    
     setLoggedIn(true);
   };
 
