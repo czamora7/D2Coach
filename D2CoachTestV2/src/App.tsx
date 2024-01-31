@@ -8,10 +8,15 @@ import Home from "./Home";
 import LoadoutBuilder from "./LoadoutBuilder";
 import Vault from "./Vault";
 
+import loginRequest from "./api requests/loginRequest";
+import getManifest from "./api requests/getDestinyManifest";
+
 declare global {
   interface Window {
-    loginCode: string;
-    loginToken: string;
+    apiKey: string;
+    loggedIn: boolean;
+    loginCode: any;
+    loginToken: any;
     clientId: number;
   }
 }
@@ -21,6 +26,9 @@ function App() {
   let links = ["/", "/LoadoutBuilder", "/Vault"];
 
   window.clientId = 45654;
+  window.apiKey = "82a78bc74da1485dbded6f6f0333dd63";
+  // getManifest();
+  window.loginCode = loginRequest();
 
   return (
     <Router>
