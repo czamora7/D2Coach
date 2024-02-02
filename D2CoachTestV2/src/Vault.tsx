@@ -1,7 +1,13 @@
 import React from 'react';
 
+import getManifest from './api requests/getDestinyManifest';
+
 const Vault: React.FC = () => {
-  return <div>Welcome to the Vault Page</div>;
+
+ getManifest();
+  return <div>Welcome to the Vault Page
+    <p></p>
+  </div>;
 };
 
 export default Vault;

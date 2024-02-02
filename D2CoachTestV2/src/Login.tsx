@@ -1,12 +1,9 @@
-import React from 'react';
+import LoginButton from "./components/LoginButton";
 
-const Login: React.FC = () => {
-  return <div>Welcome to the Log-in Page
-    <p> </p>
-    <form action="https://www.bungie.net/en/OAuth/Authorize?client_id=45654&response_type=code">
-    <button type="submit" className="btn btn-primary">Log In Here</button>
-      </form>
-    </div>;
-};
+function Login() {
+  return (
+  <LoginButton />
+  )
+}
 
 export default Login;
