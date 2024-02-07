@@ -1,6 +1,6 @@
 import React from 'react';
 
-import getManifest from './api requests/getDestinyManifest';
+import getManifest from './apiRequests/getDestinyManifest';
 
 const Vault: React.FC = () => {
 

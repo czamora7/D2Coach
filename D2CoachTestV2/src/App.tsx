@@ -7,9 +7,7 @@ import imagePath from "./assets/Images/Tricorn_White.png";
 import Home from "./Home";
 import LoadoutBuilder from "./LoadoutBuilder";
 import Vault from "./Vault";
-
-import loginRequest from "./api requests/loginRequest";
-import getManifest from "./api requests/getDestinyManifest";
+import getToken from "./apiRequests/loginRequest";
 
 declare global {
   interface Window {
@@ -17,7 +15,7 @@ declare global {
     loggedIn: boolean;
     loginCode: any;
     loginToken: any;
-    clientId: number;
+    clientId: string;
   }
 }
 
@@ -25,10 +23,10 @@ function App() {
   let items = ["Home", "Loadout Builder", "Vault"];
   let links = ["/", "/LoadoutBuilder", "/Vault"];
 
-  window.clientId = 45654;
+  window.clientId = '45654';
   window.apiKey = "82a78bc74da1485dbded6f6f0333dd63";
-  // getManifest();
-  window.loginCode = loginRequest();
+
+    window.loginToken = getToken();
 
   return (
     <Router>
