@@ -7,10 +7,13 @@ import imagePath from "./assets/Images/Tricorn_White.png";
 import Home from "./Home";
 import LoadoutBuilder from "./LoadoutBuilder";
 import Vault from "./Vault";
+import getToken from "./apiRequests/getToken";
+import { globalData } from "./global";
 
 
 
 function App() {
+
   let items = ["Home", "Loadout Builder", "Vault"];
   let links = ["/", "/LoadoutBuilder", "/Vault"];
 

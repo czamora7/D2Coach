@@ -32,6 +32,9 @@ function LoginButton() {
 
   const logout = () => {
     setLoggedIn(false);
+    localStorage.setItem("authCode", '');
+    localStorage.setItem("userToken", '');
+
     localStorage.setItem("loggedIn", JSON.stringify(false))
   };
 
