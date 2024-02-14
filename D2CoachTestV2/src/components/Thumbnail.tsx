@@ -4,7 +4,7 @@ interface ThumbnailProps {
 
 function Thumbnail({src}:ThumbnailProps) {
     return (
-        <img src={src} width="200" height="200">
+        <img src={src} width="60" height="60">
 
         </img>      
       );

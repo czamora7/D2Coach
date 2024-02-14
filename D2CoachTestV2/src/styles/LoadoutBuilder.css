@@ -1,7 +1,14 @@
 .leftside {
+    display: flex;
+    flex-direction: column;
     float:left;
+    gap:30px;
 }
 
 .rightside {
+    display: flex;
+    flex-direction: column;
     float:right;
+    gap:30px;
+    justify-content: space-evenly;
 }
