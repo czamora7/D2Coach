@@ -13,6 +13,7 @@ function getCurrentUser() {
   axios.get(endpoint, {headers})
   .then(response => {
       var result = response.data;
+      localStorage.setItem("currentResponse", JSON.stringify(result));
       console.log('Destiny 2 Current User:', result);
   })
   
