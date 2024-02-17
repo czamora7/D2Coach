@@ -4,6 +4,4 @@ export const globalData = {
     loginCode: localStorage.getItem("authCode"),
     accountToken: localStorage.getItem("accountToken"),
     clientId: '45654',
-
-    resultJSON: "",
 };
