@@ -1,9 +1,10 @@
 import axios from "axios";
+import { globalData } from "../global";
 
 function getManifest() {
     const endpoint = "https://www.bungie.net/Platform/Destiny2/Manifest/";
     const headers = {
-        'X-API-KEY': window.apiKey,
+        'X-API-KEY': globalData.apiKey,
     };
 
     axios.get(endpoint, {headers})
