@@ -5,6 +5,9 @@ import LoadoutDisplay from './components/LoadoutDisplay';
 const LoadoutBuilder: React.FC = () => {
   return (
     <Fragment>
+      <div>Welcome to the Loadout Builder Page
+        <p>`${localStorage.getItem("currentResponse")}`</p>
+      </div>;
       <div className="leftside">
         <form id="loadout-input" method="POST">
           <label>Activity</label>
@@ -61,6 +64,7 @@ const LoadoutBuilder: React.FC = () => {
       </div>
     </Fragment>
   );
+
 };
 
 export default LoadoutBuilder;
