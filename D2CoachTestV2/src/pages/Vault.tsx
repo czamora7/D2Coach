@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import getManifest from './apiRequests/getDestinyManifest';
-import getCurrentUser from './apiRequests/getUserProfile';
+import getCurrentUser from '../apiRequests/getUserProfile';
 
 const Vault: React.FC = () => {
 
