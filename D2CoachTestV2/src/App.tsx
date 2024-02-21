@@ -27,7 +27,6 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/LoadoutBuilder" element={<LoadoutBuilder />} />
         <Route path="/Vault" element={<Vault />} />
       </Routes>

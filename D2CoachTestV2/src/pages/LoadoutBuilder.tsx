@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import './styles/LoadoutBuilder.css';
+import '../styles/LoadoutBuilder.css';
 import LoadoutDisplay from '../components/LoadoutDisplay';
 
 //<p>`${localStorage.getItem("currentResponse")}`</p>
