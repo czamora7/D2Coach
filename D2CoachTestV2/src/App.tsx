@@ -7,15 +7,15 @@ import imagePath from "./assets/Images/Tricorn_White.png";
 import Home from "./Home";
 import LoadoutBuilder from "./LoadoutBuilder";
 import Vault from "./Vault";
-import getToken from "./apiRequests/getToken";
-import { globalData } from "./global";
+import Debugger from "./Debugger";
+
 
 
 
 function App() {
-
-  let items = ["Home", "Loadout Builder", "Vault"];
-  let links = ["/", "/LoadoutBuilder", "/Vault"];
+  
+  let items = ["Home", "Loadout Builder", "Vault", "Debugger"];
+  let links = ["/", "/LoadoutBuilder", "/Vault", "/Debugger"];
 
   return (
     <Router>
@@ -30,6 +30,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/LoadoutBuilder" element={<LoadoutBuilder />} />
         <Route path="/Vault" element={<Vault />} />
+        <Route path="/Debugger" element={<Debugger />} />
       </Routes>
     </Router>
   );
