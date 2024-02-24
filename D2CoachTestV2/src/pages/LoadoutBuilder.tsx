@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
-import './styles/LoadoutBuilder.css';
-import LoadoutDisplay from './components/LoadoutDisplay';
+import '../styles/LoadoutBuilder.css';
+import LoadoutDisplay from '../components/LoadoutDisplay';
+
+//<p>`${localStorage.getItem("currentResponse")}`</p>
 
 const LoadoutBuilder: React.FC = () => {
   return (
     <Fragment>
-      <div>Welcome to the Loadout Builder Page
-        <p>`${localStorage.getItem("currentResponse")}`</p>
-      </div>;
       <div className="leftside">
         <form id="loadout-input" method="POST">
           <label>Activity</label>
