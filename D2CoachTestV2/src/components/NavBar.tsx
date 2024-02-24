@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import '../styles/NavBar.css';
+import LoginButton from "./LoginButton";
+
 interface NavBarProperties {
   brandName: string;
   imageSrcPath: string;
@@ -40,6 +43,7 @@ function NavBar({ brandName, imageSrcPath, navItems, navLinks }: NavBarPropertie
               </li>
             ))}
           </ul>
+          <div className="right"> <LoginButton /> </div>
         </div>
     </nav>
   );
