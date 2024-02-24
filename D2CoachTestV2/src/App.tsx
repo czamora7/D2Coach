@@ -4,14 +4,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import imagePath from "./assets/Images/Tricorn_White.png";
 
+
 import LoadoutBuilder from "./pages/LoadoutBuilder";
 import Vault from "./pages/Vault";
 import getToken from "./apiRequests/getToken";
 import { globalData } from "./global";
+import Debugger from "./Debugger";
 
 
 
-function App() {
+
 
   let items = ["Loadout Builder", "Vault"];
   let links = ["/LoadoutBuilder", "/Vault"];
@@ -28,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/LoadoutBuilder" element={<LoadoutBuilder />} />
         <Route path="/Vault" element={<Vault />} />
+        <Route path="/Debugger" element={<Debugger />} />
       </Routes>
     </Router>
   );
