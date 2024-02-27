@@ -1,0 +1,22 @@
+.weapons {
+    float:left;
+}
+
+.armor {
+
+}
+
+.weaponsTable {
+    width:33%;
+    border-collapse: collapse;
+}
+
+.armorTable {
+    width:80%;
+    border-collapse:collapse;
+}
+
+td {
+    border-style: hidden;
+    align-content: center;
+}

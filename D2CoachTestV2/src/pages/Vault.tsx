@@ -17,36 +17,44 @@ const t1data = [["","","",""],
   return <Fragment>
 
       <div>
-        <h1>Kinetic Weapons</h1>
-        <VaultDisplay rows={t1data} />
-      </div>
-      
-      <br></br>
+        <div className="weapons">
+          <h1>Kinetic Weapons</h1>
+          <table className="weaponsTable">
+            <VaultDisplay rows={t1data} />
+          </table>
+        </div>
 
-      <div>
-        <h1>Energy Weapons</h1>
-        <VaultDisplay rows={t1data} />
-      </div>
+        <div className="weapons">
+          <h1>Energy Weapons</h1>
+          <table className="weaponsTable">
+            <VaultDisplay rows={t1data} />
+          </table>
+        </div>
 
-      <br></br>
+        <div className="weapons">
+          <h1>Heavy Weapons</h1>
+          <table className="weaponsTable">
+            <VaultDisplay rows={t1data} />
+          </table>
+        </div>
 
-      <div>
-        <h1>Heavy Weapons</h1>
-        <VaultDisplay rows={t1data} />
-      </div>
+        <br></br>
 
-      <br></br>
-
-      <div>
-        <h1>Armor</h1>
-        <VaultDisplay rows={t1data} />
+        <div>
+          <h1>Armor</h1>
+          <table className="armorTable">
+            <VaultDisplay rows={t1data} />
+          </table>
+        </div>
       </div>
 
       <br></br>
 
       <div>
         <h1>Miscellaneous</h1>
-        <VaultDisplay rows={t1data} />
+        <table className="armorTable">
+          <VaultDisplay rows={t1data} />
+        </table>
       </div>
   </Fragment>;
 };

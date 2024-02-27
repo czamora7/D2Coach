@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Thumbnail from "./Thumbnail";
+import '../styles/VaultDisplay.css'
 
 interface VaultProps{
     rows:string[][];
@@ -9,8 +10,6 @@ const VaultDisplay = ({rows}:VaultProps) =>
 {
     return(
         <Fragment>
-            <div>
-            <table width="80%">
                 <tbody>
                     {rows.map((row) => (
                         <tr>
@@ -18,8 +17,6 @@ const VaultDisplay = ({rows}:VaultProps) =>
                         </tr>
                         ))}
                 </tbody>
-            </table>
-            </div>
         </Fragment>
     );
 }
