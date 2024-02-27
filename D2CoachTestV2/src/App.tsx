@@ -11,7 +11,7 @@ import getToken from "./apiRequests/getToken";
 import { globalData } from "./global";
 import Debugger from "./Debugger";
 
-
+function App() {
 
 
 
