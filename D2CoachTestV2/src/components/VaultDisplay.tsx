@@ -10,7 +10,7 @@ const VaultDisplay = ({rows}:VaultProps) =>
     return(
         <Fragment>
             <div>
-            <table className="table">
+            <table width="80%">
                 <tbody>
                     {rows.map((row) => (
                         <tr>
