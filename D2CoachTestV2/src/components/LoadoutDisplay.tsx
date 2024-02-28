@@ -1,4 +1,5 @@
 import Thumbnail from "./Thumbnail"
+import '../styles/LoadoutBuilder.css';
 
 interface DisplayProps {
     subclass: string;
