@@ -18,7 +18,7 @@ const t1data = [["","","",""],
 
       <div className="weapons">
         <div className="kinetic">
-          <h1>Kinetic Weapons</h1>
+          <h2>Kinetic Weapons</h2>
           <br></br>
           <table className="weaponsTable">
             <VaultDisplay rows={t1data} />
@@ -26,7 +26,7 @@ const t1data = [["","","",""],
         </div>
 
         <div className="energy">
-          <h1>Energy Weapons</h1>
+          <h2>Energy Weapons</h2>
           <br></br>
           <table className="weaponsTable">
             <VaultDisplay rows={t1data} />
@@ -34,7 +34,7 @@ const t1data = [["","","",""],
         </div>
 
         <div className="heavy">
-          <h1>Heavy Weapons</h1>
+          <h2>Heavy Weapons</h2>
           <br></br>
           <table className="weaponsTable">
             <VaultDisplay rows={t1data} />
@@ -45,7 +45,7 @@ const t1data = [["","","",""],
         <br></br>
 
         <div className="armor">
-          <h1>Armor</h1>
+          <h2>Armor</h2>
           <br></br>
           <table className="armorTable">
             <VaultDisplay rows={t1data} />
@@ -55,7 +55,7 @@ const t1data = [["","","",""],
       <br></br>
 
       <div className="armor">
-        <h1>Miscellaneous</h1>
+        <h2>Miscellaneous</h2>
         <br></br>
         <table className="armorTable">
           <VaultDisplay rows={t1data} />

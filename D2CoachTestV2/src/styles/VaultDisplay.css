@@ -1,27 +1,39 @@
 .weapons {
     display:flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10%;
+    justify-content: space-between;
+    margin-top:20px;
+    padding-left:80px;
+    padding-right: 80px;
 }
 
 .kinetic {
     display:flex;
+    flex-direction: column;
     float:left;
+    align-items:center;
+    background-color: darkgray;
 }
 
 .energy {
-
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    background-color: darkgray;
 }
 
 .heavy {
     display:flex;
+    flex-direction: column;
     float:right;
+    align-items: center;
+    background-color: darkgray;
 }
 
 .armor {
     display:flex;
-    margin-bottom:80%;
+    flex-direction: column;
+    margin-top:20px;
+    margin-bottom:10px;
     align-items: center;
 }
 
@@ -33,12 +45,15 @@
 .armorTable {
     width:80%;
     border-collapse:collapse;
-    margin:auto;
+}
+
+h2 {
+    color: gray;
+    text-shadow: 1px 1px 1px black;
 }
 
 td {
-    width:70px;
-    height:70px;
+    padding:10px;
     border-style: hidden;
     align-content: center;
 }
