@@ -3,6 +3,7 @@ import React, {Fragment} from 'react';
 // import getManifest from './apiRequests/getDestinyManifest';
 import getCurrentUser from '../apiRequests/getUserProfile';
 import VaultDisplay from '../components/VaultDisplay';
+import '../styles/Vault.css';
 
 const Vault: React.FC = () => {
 

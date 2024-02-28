@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Thumbnail from "./Thumbnail";
-import '../styles/VaultDisplay.css'
+import '../styles/Vault.css'
 
 interface VaultProps{
     rows:string[][];
