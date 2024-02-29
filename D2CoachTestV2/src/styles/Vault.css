@@ -1,0 +1,69 @@
+.weapons {
+    display:flex;
+    justify-content: space-between;
+    margin-top:20px;
+    padding-left:80px;
+    padding-right: 80px;
+}
+
+.kinetic {
+    display:flex;
+    flex-direction: column;
+    float:left;
+    align-items:center;
+    background-color: darkgray;
+    border-radius: 20px;
+    border:2px solid black;
+}
+
+.energy {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    background-color: darkgray;
+    border-radius: 20px;
+    border:2px solid black;
+}
+
+.heavy {
+    display:flex;
+    flex-direction: column;
+    float:right;
+    align-items: center;
+    background-color: darkgray;
+    border-radius: 20px;
+    border:2px solid black;
+}
+
+.armor {
+    display:flex;
+    flex-direction: column;
+    margin-top:20px;
+    margin-bottom:10px;
+    margin-left:80px;
+    margin-right: 80px;
+    align-items: center;
+    background-color: darkgray;
+    border-radius: 20px;
+    border:2px solid black;
+}
+
+.weaponsTable {
+    width:20%;
+    border-collapse: collapse;
+}
+
+.armorTable {
+    width:80%;
+    border-spacing: 10px;
+}
+
+h2 {
+    color: gray;
+    text-shadow: 1px 1px 1px black;
+}
+
+td {
+    padding:10px;
+    align-content: center;
+}

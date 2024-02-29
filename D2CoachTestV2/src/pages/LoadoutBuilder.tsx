@@ -7,6 +7,7 @@ const LoadoutBuilder: React.FC = () => {
   return (
     <Fragment>
       <div className="leftside">
+        <div className="form">
         <form id="loadout-input" method="POST">
           <label>Activity</label>
           <br></br>
@@ -51,14 +52,18 @@ const LoadoutBuilder: React.FC = () => {
             <option value="Reaper">Reaper</option>
           </select>
         </form>
+        </div>
       </div>
+
       <div className="rightside">
-        <h1>Loadouts</h1>
-        <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-        <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-        <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-        <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-        <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+        <h2>Loadouts</h2>
+        <div className="loadoutDisplays">
+          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+        </div>
       </div>
     </Fragment>
   );

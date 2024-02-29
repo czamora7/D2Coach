@@ -5,7 +5,6 @@ import getCurrentUser from '../apiRequests/getUserProfile';
 import getAccInfo from '../apiRequests/getNeededAccData';
 import Thumbnail from '../components/Thumbnail';
 
-
 const Debugger: React.FC = () => {
 
  // getManifest();
@@ -18,6 +17,7 @@ const Debugger: React.FC = () => {
     <p></p>
 
     <Thumbnail src="https://www.bungie.net/common/destiny2_content/icons/64209c4fd20513b33109c374179d0958.png" />
+
   </div>;
 };
 

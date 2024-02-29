@@ -5,12 +5,12 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import imagePath from "./assets/Images/Tricorn_White.png";
 
 
+
 import LoadoutBuilder from "./pages/LoadoutBuilder";
 import Vault from "./pages/Vault";
 import Debugger from "./pages/Debugger";
 
 function App() {
-
 
 
   let items = ["Loadout Builder", "Vault", "Debugger"];
