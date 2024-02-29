@@ -3,6 +3,7 @@ import React from 'react';
 // import getManifest from './apiRequests/getDestinyManifest';
 import getCurrentUser from '../apiRequests/getUserProfile';
 import getAccInfo from '../apiRequests/getNeededAccData';
+import Thumbnail from '../components/Thumbnail';
 
 
 const Debugger: React.FC = () => {
@@ -13,7 +14,10 @@ const Debugger: React.FC = () => {
  // console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
  
   return <div>Welcome to the Debugger/Console.log() Page.
+  
     <p></p>
+
+    <Thumbnail src="https://www.bungie.net/common/destiny2_content/icons/64209c4fd20513b33109c374179d0958.png" />
   </div>;
 };
 

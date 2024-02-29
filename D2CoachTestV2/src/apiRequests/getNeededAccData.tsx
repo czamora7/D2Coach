@@ -65,7 +65,7 @@ async function getMemberId() {
     if (id == null) {
         return null;
     }
-    const endpoint = `https://www.bungie.net/Platform/Destiny2/${platform}/Profile/${id}/?components=100`;
+    const endpoint = `https://www.bungie.net/Platform/Destiny2/${platform}/Profile/${id}/?components=100,200`;
     
     const token = localStorage.getItem("userToken"); 
     const headers = {
