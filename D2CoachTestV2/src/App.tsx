@@ -8,16 +8,13 @@ import imagePath from "./assets/Images/Tricorn_White.png";
 
 import LoadoutBuilder from "./pages/LoadoutBuilder";
 import Vault from "./pages/Vault";
-import getToken from "./apiRequests/getToken";
-import { globalData } from "./global";
 import Debugger from "./pages/Debugger";
 
 function App() {
 
 
-
-  let items = ["Loadout Builder", "Vault"];
-  let links = ["/LoadoutBuilder", "/Vault"];
+  let items = ["Loadout Builder", "Vault", "Debugger"];
+  let links = ["/LoadoutBuilder", "/Vault", "/Debugger"];
 
   return (
     <Router>
