@@ -4,8 +4,8 @@ import axios from "axios";
 var accMemberId: string;
 var destinyMemberId: string;
 var platformNum: string;
-var displayName;
-var characterIds: Array<String>;
+var displayName: string;
+var characterIds: Array<string>;
 
 async function getMemberId() {
     const endpoint = "https://www.bungie.net/Platform/User/GetCurrentBungieNetUser/";
@@ -48,9 +48,10 @@ async function getMemberId() {
         var result = response.data
         platformNum = result.Response.destinyMemberships[0].crossSaveOverride;
         destinyMemberId = result.Response.primaryMembershipId;
+        displayName = result.Response.bungieNetUser.displayName;
         console.log('Here is the getMembershipsbyID:', result);
-        console.log('Platform Num: ', platformNum);
-        console.log('Member ID: ', destinyMemberId);
+    //    console.log('Platform Num: ', platformNum);
+    //    console.log('Member ID: ', destinyMemberId);
 
       getProfile(destinyMemberId, platformNum);
     })
@@ -65,7 +66,7 @@ async function getMemberId() {
     if (id == null) {
         return null;
     }
-    const endpoint = `https://www.bungie.net/Platform/Destiny2/${platform}/Profile/${id}/?components=100,200`;
+    const endpoint = `https://www.bungie.net/Platform/Destiny2/${platform}/Profile/${id}/?components=100`;
     
     const token = localStorage.getItem("userToken"); 
     const headers = {
@@ -77,6 +78,7 @@ async function getMemberId() {
     .then(response => {
         var result = response.data
        characterIds = result.Response.profile.data.characterIds;
+       localStorage.setItem("currentCharacters", JSON.stringify(characterIds));
         console.log('Here is the getProfile:', result);
         console.log('This is the first character: ', characterIds[0]);
     })
@@ -91,7 +93,9 @@ async function getMemberId() {
 
 async function getAccInfo() {
 getMemberId();
-
+globalData.D2DisplayName = displayName;
+globalData.D2MemberId = destinyMemberId;
+globalData.D2PlatformNumber = platformNum;
 }
 
 export default getAccInfo

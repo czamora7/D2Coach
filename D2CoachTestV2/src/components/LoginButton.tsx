@@ -20,14 +20,14 @@ function LoginButton() {
    window.location.href="https://www.bungie.net/en/OAuth/Authorize?client_id=" + clientId + "&response_type=code";
    
     await getToken();
+    setLoggedIn(true);
+    localStorage.setItem("loggedIn", JSON.stringify(true))
+    console.log("End status: " + globalData.accountToken + " " + globalData.loggedIn);
    }
    catch (error) {
     console.error("There was something bad that happened: ", error);
     
    }
-    setLoggedIn(true);
-    localStorage.setItem("loggedIn", JSON.stringify(true))
-    console.log("End status: " + globalData.accountToken + " " + globalData.loggedIn);
   };
 
   const logout = () => {
