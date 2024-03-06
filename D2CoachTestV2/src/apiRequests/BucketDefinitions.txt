@@ -1,0 +1,25 @@
+bucket hashes:
+
+1469714392 (1469714392 S) = consumables
+
+3313201758 (-981765538 S) = modifications
+
+138197802 (138197802 S) = General Items (Weapons are included here too.)
+
+3448274439 (-846692857 S) = Helmets
+
+3551918588 (-743048708 S) = Gauntlets
+
+4274335291 (-20632005 S) = Emblems
+
+14239492 (14239492 S) = Chest Armor
+
+20886954 (20886954 S) = Boots
+
+953998645 (953998645 S) = Heavy Weapons
+
+1498876634 (1498876634 S) = Kinetic Weapons
+
+1585787867 (1585787867 S) = Class Armor
+
+2465295065 (-1829672231 S) = Energy Weapons

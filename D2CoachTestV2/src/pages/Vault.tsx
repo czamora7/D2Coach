@@ -1,15 +1,17 @@
 import React, {Fragment} from 'react';
 
-// import getManifest from './apiRequests/getDestinyManifest';
-import getCurrentUser from '../apiRequests/getUserProfile';
+
+// import getCurrentUser from '../apiRequests/getUserProfile';
+import getCurWeapons from '../apiRequests/getEquippedWeapons';
 import VaultDisplay from '../components/VaultDisplay';
 import '../styles/Vault.css';
+import { globalData } from '../global';
 
 const Vault: React.FC = () => {
 
- // getManifest();
- getCurrentUser();
-
+ // getCurrentUser();
+console.log(globalData.D2PlatformNumber + " " + globalData.D2MemberId);
+getCurWeapons(globalData.D2PlatformNumber, globalData.D2MemberId);
 //TODO pull data for thumbnails here, format as string[][]
 const t1data = [["","","",""],
                 ["","","",""]];
