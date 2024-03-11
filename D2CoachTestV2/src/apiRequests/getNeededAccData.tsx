@@ -47,6 +47,8 @@ async function getMemberId() {
     .then(response => {
         var result = response.data
         platformNum = result.Response.destinyMemberships[0].crossSaveOverride;
+        localStorage.setItem("membershipId", result.Response.destinyMemberships[0].membershipId);
+        localStorage.setItem("membershipType", result.Response.destinyMemberships[0].membershipType);
         destinyMemberId = result.Response.primaryMembershipId;
         displayName = result.Response.bungieNetUser.displayName;
         console.log('Here is the getMembershipsbyID:', result);
