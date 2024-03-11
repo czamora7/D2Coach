@@ -6,12 +6,15 @@ import getAccInfo from '../apiRequests/getNeededAccData';
 import Thumbnail from '../components/Thumbnail';
 import { globalData } from '../global';
 import getInventory from '../apiRequests/getInventory';
+import getVendor from '../apiRequests/getCollection';
+import getCollection from '../apiRequests/getCollection';
 
 const Debugger: React.FC = () => {
 
  // getManifest();
   getAccInfo();
   getInventory();
+  getCollection();
   console.log(globalData.D2ClassList);
  // console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
  
