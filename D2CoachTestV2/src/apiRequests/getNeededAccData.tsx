@@ -81,6 +81,7 @@ async function getMemberId() {
         var result = response.data
        characterIds = result.Response.profile.data.characterIds;
        localStorage.setItem("currentCharacters", JSON.stringify(characterIds));
+       localStorage.setItem("character0", characterIds[0]); 
         console.log('Here is the getProfile:', result);
         console.log('This is the first character: ', characterIds[0]);
     })
