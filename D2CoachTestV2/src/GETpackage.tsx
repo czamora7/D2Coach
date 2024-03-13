@@ -1,6 +1,8 @@
 // try to get the manifest to display on here.
 // Learn how to GET requests and POST requests
-import fetch from 'node-fetch'; // or another fetch-compatible library if you're in a Node environment
+// import fetch from 'node-fetch'; // or another fetch-compatible library if you're in a Node environment
+import { globalData } from './global.tsx';
+
 
 const apiKey = 'OUR_BUNGIE_API_KEY'; // Replace with our actual API key lol
 //was not working when trying to use it in postman. said the API key was invalid
@@ -9,8 +11,9 @@ async function getDestiny2Data(endpoint: string): Promise<any> {
     const url = `https://www.bungie.net/Platform${endpoint}`;
 
     const headers = {
-        'X-API-Key': apiKey
+        'X-API-Key': globalData.apiKey
     };
+//We need to find a way to obtain the data to get whatever accounts character has equipped
 
     try {
 

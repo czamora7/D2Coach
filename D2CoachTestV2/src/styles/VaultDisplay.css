@@ -1,0 +1,45 @@
+.weapons {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+}
+
+.kinetic {
+    display:flex;
+    float:left;
+}
+
+.energy {
+    display: flex;
+}
+
+.heavy {
+    display:flex;
+    float:right;
+}
+
+.armor {
+    display:flex;
+    margin-bottom:80%;
+    align-items: center;
+}
+
+.weaponsTable {
+    width:20%;
+    border-collapse: collapse;
+}
+
+
+.armorTable {
+    width:80%;
+    border-collapse:collapse;
+    margin:auto;
+}
+
+td {
+    width:70px;
+    height:70px;
+    border-style: hidden;
+    align-content: center;
+}

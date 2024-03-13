@@ -12,7 +12,7 @@ interface NavBarProperties {
 function NavBar({ brandName, imageSrcPath, navItems, navLinks }: NavBarProperties) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark shadow">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           <img

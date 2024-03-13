@@ -1,47 +1,85 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 
 
-// import getCurrentUser from '../apiRequests/getUserProfile';
-// import getCurWeapons from '../apiRequests/getEquippedWeapons';
+// import getManifest from './apiRequests/getDestinyManifest';
 import VaultDisplay from '../components/VaultDisplay';
 import '../styles/Vault.css';
 import { globalData } from '../global';
-import getExotics from '../apiRequests/getPlayerExotics';
+import axios from 'axios';
+import Loading from '../components/Loading.tsx';
 
 const Vault: React.FC = () => {
 
- // getCurrentUser();
-console.log(globalData.D2PlatformNumber + " " + globalData.D2MemberId + " " + globalData.D2ClassList);
-getExotics(/*globalData.D2PlatformNumber, globalData.D2MemberId, globalData.D2ClassList*/);
-//TODO pull data for thumbnails here, format as string[][]
-const t1data = [["","","",""],
+  //call get Inventory here
+  const [inventory,setInventory] = useState<any>([]);
+  const [isLoading, setLoading] = useState(true);
+
+  let membershipType = localStorage.getItem("membershipType");
+  let destinyMembershipId = localStorage.getItem("membershipId"); //see line 50/51 of getNeededAccData.tsx for where this is set
+  const endpoint = "https://www.bungie.net/Platform/Destiny2/" + membershipType + "/Profile/" + destinyMembershipId + "/?components=102";
+  const token = localStorage.getItem("userToken");
+  const headers = {
+    'X-API-KEY': globalData.apiKey,
+    "Authorization": `Bearer ${token}`,
+  };
+
+  useEffect(() => {
+    axios.get(endpoint, {headers})
+    .then(response => {
+        setInventory(response.data);
+        setLoading(false);
+    })
+    .catch(error => {
+        console.error('Error fetching account inventory:', error);
+        console.log('Error response:', error.response ? error.response.data : 'No response data');
+      }); 
+    }, []);
+
+    //end call to getInventory
+
+    var items = JSON.stringify(inventory);
+    //console.log(items);
+
+  const kdata = [["","","",""],
                 ["","","",""]];
 
- //console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
-  return <Fragment>
+  const edata = [["","","",""],
+                ["","","",""]];
 
+  const hdata = [["","","",""],
+                ["","","",""]];
+
+  const adata = [["","","",""],
+                ["","","",""]];
+
+  if(isLoading)
+  {
+    return <Loading />
+  }
+
+  return <Fragment>
       <div className="weapons">
-        <div className="kinetic">
+        <div id="kinetic">
           <h2>Kinetic Weapons</h2>
           <br></br>
           <table className="weaponsTable">
-            <VaultDisplay rows={t1data} />
+            <VaultDisplay rows={kdata} />
           </table>
         </div>
 
-        <div className="energy">
+        <div id="energy">
           <h2>Energy Weapons</h2>
           <br></br>
           <table className="weaponsTable">
-            <VaultDisplay rows={t1data} />
+            <VaultDisplay rows={edata} />
           </table>
         </div>
 
-        <div className="heavy">
+        <div id="heavy">
           <h2>Heavy Weapons</h2>
           <br></br>
           <table className="weaponsTable">
-            <VaultDisplay rows={t1data} />
+            <VaultDisplay rows={hdata} />
           </table>
         </div>
       </div>
@@ -52,20 +90,23 @@ const t1data = [["","","",""],
           <h2>Armor</h2>
           <br></br>
           <table className="armorTable">
-            <VaultDisplay rows={t1data} />
+            <VaultDisplay rows={adata} />
           </table>
         </div>
 
       <br></br>
+  </Fragment>;
+};
 
-      <div className="armor">
+/* This fragment was used to save data about items that do not fall into a weapon /armor category, use it if it becomes
+necessary to display information about this data   
+<div className="armor">
         <h2>Miscellaneous</h2>
         <br></br>
         <table className="armorTable">
-          <VaultDisplay rows={t1data} />
+          <VaultDisplay rows={tdata} />
         </table>
-      </div>
-  </Fragment>;
-};
+      </div> 
+      */
 
 export default Vault;

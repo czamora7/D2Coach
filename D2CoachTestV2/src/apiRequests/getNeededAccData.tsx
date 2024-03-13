@@ -47,6 +47,8 @@ async function getMemberId() {
     .then(response => {
         var result = response.data
         platformNum = result.Response.destinyMemberships[0].crossSaveOverride;
+        localStorage.setItem("membershipId", result.Response.destinyMemberships[0].membershipId);
+        localStorage.setItem("membershipType", result.Response.destinyMemberships[0].membershipType);
         destinyMemberId = result.Response.primaryMembershipId;
         displayName = result.Response.bungieNetUser.displayName;
         console.log('Here is the getMembershipsbyID:', result);
@@ -79,6 +81,7 @@ async function getMemberId() {
         var result = response.data
        characterIds = result.Response.profile.data.characterIds;
        localStorage.setItem("currentCharacters", JSON.stringify(characterIds));
+       localStorage.setItem("character0", characterIds[0]); 
         console.log('Here is the getProfile:', result);
         console.log('This is the first character: ', characterIds[0]);
     })
@@ -91,11 +94,12 @@ async function getMemberId() {
 
 
 
-async function getAccInfo() {
-getMemberId();
-globalData.D2DisplayName = displayName;
-globalData.D2MemberId = destinyMemberId;
-globalData.D2PlatformNumber = platformNum;
+async function getAccInfo() 
+{
+    getMemberId();
+    globalData.D2DisplayName = displayName;
+    globalData.D2MemberId = destinyMemberId;
+    globalData.D2PlatformNumber = platformNum;
 }
 
 export default getAccInfo
