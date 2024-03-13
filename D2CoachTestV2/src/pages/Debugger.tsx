@@ -20,7 +20,7 @@ const Debugger: React.FC = () => {
   
     <p></p>
 
-    <Thumbnail src="https://www.bungie.net/common/destiny2_content/icons/64209c4fd20513b33109c374179d0958.png" />
+    <Thumbnail src="https://www.bungie.net/common/destiny2_content/icons/64209c4fd20513b33109c374179d0958.png" fallback="../assets/Images/alt.png" />
 
   </div>;
 };
