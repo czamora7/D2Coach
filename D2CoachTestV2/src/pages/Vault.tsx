@@ -37,8 +37,8 @@ const Vault: React.FC = () => {
 
     //end call to getInventory
 
-    var items = JSON.stringify(inventory);
-    //console.log(items);
+    let items:string = JSON.stringify(inventory);
+    console.log(items);
 
   const kdata = [["","","",""],
                 ["","","",""]];
