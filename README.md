@@ -16,4 +16,4 @@ How to obtain the source code: //TODO: update this when we have source
 Directory Structure: //TODO make a diagram of this when we have a repo structure
 
 How to run the software: //TODO write a description of how to run the software once we have code to run \
-Download Git LFS https://git-lfs.com/ and follow the installation instructions listed there
+Download Git LFS at https://git-lfs.com/ and follow the installation instructions listed there
