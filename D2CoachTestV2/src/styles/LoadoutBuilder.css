@@ -4,12 +4,13 @@
     float:left;
     margin-left:80px;
     margin-top:20px;
+    background-color: #212529;
+    border-radius: 20px;
 }
 
 .form {
-    background-color: darkgray;
+    background-color: #212529;
     border-radius: 20px;
-    border:2px solid black;
     padding:10px;
 }
 
@@ -22,9 +23,8 @@
     margin-right:80px;
     margin-top:20px;
     align-items: center;
-    background-color: darkgray;
+    background-color: #212529;
     border-radius: 20px;
-    border:2px solid black;
 }
 
 .loadoutDisplays {
@@ -34,11 +34,16 @@
 }
 
 h2 {
-    color: gray;
-    text-shadow: 1px 1px 1px black;
+    color: white;
+    text-shadow: 1px 1px 1px gray;
 }
 
 td, th {
     padding-left: 10px;
     padding-right:10px;
+    color: white;
+}
+
+label {
+    color: white;
 }
