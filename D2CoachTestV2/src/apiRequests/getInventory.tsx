@@ -3,7 +3,7 @@ import { globalData } from "../global";
 
 //Path: /Destiny2/{membershipType}/Profile/{destinyMembershipId}/
 
-async function getInventory() {
+async function getInventory(): Promise<any>{
     let membershipType = localStorage.getItem("membershipType");
     let destinyMembershipId = localStorage.getItem("membershipId"); //see line 50/51 of getNeededAccData.tsx for where this is set
     const endpoint = "https://www.bungie.net/Platform/Destiny2/" + membershipType + "/Profile/" + destinyMembershipId + "/?components=102";
