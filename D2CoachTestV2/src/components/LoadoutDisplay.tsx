@@ -10,6 +10,7 @@ interface DisplayProps {
 function LoadoutDisplay({subclass,exoticArmor,exoticWeapon}:DisplayProps) {
     return (
         <table>
+            <tbody>
             <tr>
                 <th>Subclass</th>
                 <th>Exotic Armor</th>
@@ -20,6 +21,7 @@ function LoadoutDisplay({subclass,exoticArmor,exoticWeapon}:DisplayProps) {
                 <td><Thumbnail src={exoticArmor}></Thumbnail></td>
                 <td><Thumbnail src={exoticWeapon}></Thumbnail></td>
             </tr>
+            </tbody>
         </table>
     )
 }

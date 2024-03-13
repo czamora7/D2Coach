@@ -8,4 +8,5 @@ export const globalData = {
     D2ClassList: localStorage.getItem("currentCharacters"),
     D2DisplayName: '',
     D2PlatformNumber: '',
+    inventory: localStorage.getItem("inventory")
 };

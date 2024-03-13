@@ -15,6 +15,7 @@ const Debugger: React.FC = () => {
   getInventory();
   getCollection();
   console.log(globalData.D2ClassList);
+  console.log(globalData.inventory);
  // console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
  
   return <div>Welcome to the Debugger/Console.log() Page.

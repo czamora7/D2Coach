@@ -4,15 +4,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import imagePath from "./assets/Images/Tricorn_White.png";
 
-
-
 import LoadoutBuilder from "./pages/LoadoutBuilder";
 import Vault from "./pages/Vault";
 import Debugger from "./pages/Debugger";
 
 function App() {
-
-
   let items = ["Loadout Builder", "Vault", "Debugger"];
   let links = ["/LoadoutBuilder", "/Vault", "/Debugger"];
 
@@ -26,6 +22,7 @@ function App() {
       />
 
       <Routes>
+        <Route path="/" element={<LoadoutBuilder />} />
         <Route path="/LoadoutBuilder" element={<LoadoutBuilder />} />
         <Route path="/Vault" element={<Vault />} />
         <Route path="/Debugger" element={<Debugger />} />
