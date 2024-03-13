@@ -58,7 +58,7 @@ const Vault: React.FC = () => {
 
   return <Fragment>
       <div className="weapons">
-        <div className="kinetic">
+        <div id="kinetic">
           <h2>Kinetic Weapons</h2>
           <br></br>
           <table className="weaponsTable">
@@ -66,7 +66,7 @@ const Vault: React.FC = () => {
           </table>
         </div>
 
-        <div className="energy">
+        <div id="energy">
           <h2>Energy Weapons</h2>
           <br></br>
           <table className="weaponsTable">
@@ -74,7 +74,7 @@ const Vault: React.FC = () => {
           </table>
         </div>
 
-        <div className="heavy">
+        <div id="heavy">
           <h2>Heavy Weapons</h2>
           <br></br>
           <table className="weaponsTable">

@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import imagePath from "./assets/Images/Tricorn_White.png";
+import './styles/App.css';
 
 import LoadoutBuilder from "./pages/LoadoutBuilder";
 import Vault from "./pages/Vault";
