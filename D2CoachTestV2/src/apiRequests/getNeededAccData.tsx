@@ -94,11 +94,12 @@ async function getMemberId() {
 
 
 
-async function getAccInfo() {
-getMemberId();
-globalData.D2DisplayName = displayName;
-globalData.D2MemberId = destinyMemberId;
-globalData.D2PlatformNumber = platformNum;
+async function getAccInfo() 
+{
+    getMemberId();
+    globalData.D2DisplayName = displayName;
+    globalData.D2MemberId = destinyMemberId;
+    globalData.D2PlatformNumber = platformNum;
 }
 
 export default getAccInfo

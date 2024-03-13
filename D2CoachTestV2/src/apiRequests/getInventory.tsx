@@ -17,8 +17,8 @@ async function getInventory() {
     .then(response => {
         var inventory = response.data;
         console.log('Profile inventory:', inventory);
+        localStorage.setItem("inventory", inventory);
     })
-    
     .catch(error => {
         console.error('Error fetching account inventory:', error);
         console.log('Error response:', error.response ? error.response.data : 'No response data');

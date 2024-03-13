@@ -11,8 +11,6 @@ import Vault from "./pages/Vault";
 import Debugger from "./pages/Debugger";
 
 function App() {
-
-
   let items = ["Loadout Builder", "Vault", "Debugger"];
   let links = ["/LoadoutBuilder", "/Vault", "/Debugger"];
 
@@ -26,6 +24,7 @@ function App() {
       />
 
       <Routes>
+        <Route path="/" element={<LoadoutBuilder />} />
         <Route path="/LoadoutBuilder" element={<LoadoutBuilder />} />
         <Route path="/Vault" element={<Vault />} />
         <Route path="/Debugger" element={<Debugger />} />
