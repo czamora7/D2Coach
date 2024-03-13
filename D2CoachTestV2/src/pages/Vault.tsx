@@ -1,20 +1,18 @@
 import React, {Fragment, useState, useEffect} from 'react';
 
 // import getManifest from './apiRequests/getDestinyManifest';
-import getCurrentUser from '../apiRequests/getUserProfile';
 import VaultDisplay from '../components/VaultDisplay';
 import '../styles/Vault.css';
 import { globalData } from '../global';
 import axios from 'axios';
-import getInventory from '../apiRequests/getInventory';
-import getAccInfo from '../apiRequests/getNeededAccData';
-import Loader from '../components/Loader';
-import Loading from '../components/Loading';
+import Loading from '../components/Loading.tsx';
 
 const Vault: React.FC = () => {
 
   //call get Inventory here
   const [inventory,setInventory] = useState<any>([]);
+  const [isLoading, setLoading] = useState(true);
+
   let membershipType = localStorage.getItem("membershipType");
   let destinyMembershipId = localStorage.getItem("membershipId"); //see line 50/51 of getNeededAccData.tsx for where this is set
   const endpoint = "https://www.bungie.net/Platform/Destiny2/" + membershipType + "/Profile/" + destinyMembershipId + "/?components=102";
@@ -28,6 +26,7 @@ const Vault: React.FC = () => {
     axios.get(endpoint, {headers})
     .then(response => {
         setInventory(response.data);
+        setLoading(false);
     })
     .catch(error => {
         console.error('Error fetching account inventory:', error);
@@ -37,8 +36,8 @@ const Vault: React.FC = () => {
 
     //end call to getInventory
 
-    //console.log("Retreived data: ", inventory.Response.profileInventory.data.items);
-    var items = inventory.Response.profileInventory.data.items;
+    var items = JSON.stringify(inventory);
+    //console.log(items);
 
   const kdata = [["","","",""],
                 ["","","",""]];
@@ -51,7 +50,12 @@ const Vault: React.FC = () => {
 
   const adata = [["","","",""],
                 ["","","",""]];
- //console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
+
+  if(isLoading)
+  {
+    return <Loading />
+  }
+
   return <Fragment>
       <div className="weapons">
         <div className="kinetic">
