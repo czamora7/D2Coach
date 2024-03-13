@@ -1,5 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react';
 
+
 // import getManifest from './apiRequests/getDestinyManifest';
 import VaultDisplay from '../components/VaultDisplay';
 import '../styles/Vault.css';
