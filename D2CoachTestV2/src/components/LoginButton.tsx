@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { globalData } from "../global";
 import getToken from "../apiRequests/getToken";
+import '../styles/Button.css';
 
 var clientId = globalData.clientId;
 
@@ -42,11 +43,11 @@ function LoginButton() {
     <div id='LoginButton'>
       <p> </p>
       {loggedIn ? (
-        <button type="button" className="btn btn-primary" onClick={logout}>
+        <button type="button" className="btn-login" onClick={logout}>
           Logout
         </button>
       ) : (
-        <button type="button" className="btn btn-primary" onClick={login}>
+        <button type="button" className="btn-login" onClick={login}>
           Login
         </button>
       )}
