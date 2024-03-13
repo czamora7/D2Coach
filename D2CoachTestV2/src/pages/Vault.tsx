@@ -2,16 +2,17 @@ import React, {Fragment} from 'react';
 
 
 // import getCurrentUser from '../apiRequests/getUserProfile';
-import getCurWeapons from '../apiRequests/getEquippedWeapons';
+// import getCurWeapons from '../apiRequests/getEquippedWeapons';
 import VaultDisplay from '../components/VaultDisplay';
 import '../styles/Vault.css';
 import { globalData } from '../global';
+import getExotics from '../apiRequests/getPlayerExotics';
 
 const Vault: React.FC = () => {
 
  // getCurrentUser();
-console.log(globalData.D2PlatformNumber + " " + globalData.D2MemberId);
-getCurWeapons(globalData.D2PlatformNumber, globalData.D2MemberId);
+console.log(globalData.D2PlatformNumber + " " + globalData.D2MemberId + " " + globalData.D2ClassList);
+getExotics(/*globalData.D2PlatformNumber, globalData.D2MemberId, globalData.D2ClassList*/);
 //TODO pull data for thumbnails here, format as string[][]
 const t1data = [["","","",""],
                 ["","","",""]];

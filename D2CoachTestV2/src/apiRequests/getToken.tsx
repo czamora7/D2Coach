@@ -37,11 +37,9 @@ async function getToken() {
     console.log("I'm trying to give the code: " + globalData.accountToken);
 
 
-    // Handle the result or update state accordingly
   } catch (error) {
     console.error("Error fetching data:", error);
-    // Handle the error
-    throw error; // Re-throw the error to be caught by the calling function if needed
+    throw error;
   }
 }
 

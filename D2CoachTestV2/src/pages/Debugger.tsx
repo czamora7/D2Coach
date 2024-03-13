@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import getManifest from './apiRequests/getDestinyManifest';
-// import getCurrentUser from '../apiRequests/getUserProfile';
+// import getCurrentUser from '../apiRequests/getUserProfile'; 
 import getAccInfo from '../apiRequests/getNeededAccData';
 import Thumbnail from '../components/Thumbnail';
 import { globalData } from '../global';
@@ -10,6 +10,7 @@ const Debugger: React.FC = () => {
 
  // getManifest();
   getAccInfo();
+  
   console.log(globalData.D2ClassList);
  // console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
  

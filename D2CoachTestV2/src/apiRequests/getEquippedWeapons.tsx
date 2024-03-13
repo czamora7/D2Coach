@@ -5,7 +5,7 @@ async function getCurWeapons(platform: string, id: string) {
 
     if (!localStorage.getItem("loggedIn")) {return null}
 
-    const endpoint = `https://www.bungie.net/Platform/Destiny2/${platform}/Profile/${id}/?components=102`;
+    const endpoint = `https://www.bungie.net/Platform/Destiny2/${platform}/Profile/${id}/?components=102,300`;
     
     const token = localStorage.getItem("userToken"); 
     const headers = {

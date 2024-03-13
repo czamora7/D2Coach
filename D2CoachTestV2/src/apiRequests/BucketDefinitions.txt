@@ -23,3 +23,23 @@ bucket hashes:
 1585787867 (1585787867 S) = Class Armor
 
 2465295065 (-1829672231 S) = Energy Weapons
+
+
+
+Destiny Collectible Hashes:
+
+Warlock Exotic Armor: 1573256543
+
+Titan Exotic Armor: 2598675734
+
+Hunter Exotic Armor: 2765771634 
+
+Exotic Weapons: (Kinetic: 2969886327), (Energy: 3919988882), (Heavy: 1139971093) 
+
+
+SQL Query to gather all exotic armor: 
+
+SELECT * FROM DestinyCollectibleDefinition
+WHERE json_extract(json, '$.parentNodeHashes') LIKE '%1573256543%' 
+OR json_extract(json, '$.parentNodeHashes') LIKE '%2765771634%' 
+OR json_extract(json, '$.parentNodeHashes') LIKE '%2598675734%'
