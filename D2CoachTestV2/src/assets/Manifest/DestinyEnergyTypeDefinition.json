@@ -1,30 +1,3 @@
-[
-    {
-        "id": -954583836,
-        "json": "{\"displayProperties\":{\"description\":\"Requires Ghost energy.\",\"name\":\"Ghost\",\"icon\":\"\",\"hasIcon\":false},\"transparentIconPath\":\"\",\"showIcon\":false,\"enumValue\":4,\"capacityStatHash\":237763788,\"costStatHash\":514071887,\"hash\":3340383460,\"index\":4,\"redacted\":false,\"blacklisted\":false}"
-    },
-    {
-        "id": -854737031,
-        "json": "{\"displayProperties\":{\"description\":\"Requires Subclass energy.\",\"name\":\"Subclass\",\"icon\":\"\",\"hasIcon\":false},\"transparentIconPath\":\"\",\"showIcon\":false,\"enumValue\":5,\"capacityStatHash\":2223994109,\"costStatHash\":119204074,\"hash\":3440230265,\"index\":5,\"redacted\":false,\"blacklisted\":false}"
-    },
-    {
-        "id": -225394735,
-        "json": "{\"displayProperties\":{\"description\":\"Requires Void energy.\",\"name\":\"Void\",\"hasIcon\":false},\"showIcon\":false,\"enumValue\":3,\"capacityStatHash\":16120457,\"costStatHash\":2399985800,\"hash\":4069572561,\"index\":3,\"redacted\":false,\"blacklisted\":false}"
-    },
-    {
-        "id": 591714140,
-        "json": "{\"displayProperties\":{\"description\":\"Requires Solar energy.\",\"name\":\"Solar\",\"hasIcon\":false},\"showIcon\":false,\"enumValue\":2,\"capacityStatHash\":2018193158,\"costStatHash\":3344745325,\"hash\":591714140,\"index\":2,\"redacted\":false,\"blacklisted\":false}"
-    },
-    {
-        "id": 728351493,
-        "json": "{\"displayProperties\":{\"description\":\"Requires Arc energy.\",\"name\":\"Arc\",\"hasIcon\":false},\"showIcon\":false,\"enumValue\":1,\"capacityStatHash\":3625423501,\"costStatHash\":3779394102,\"hash\":728351493,\"index\":1,\"redacted\":false,\"blacklisted\":false}"
-    },
-    {
-        "id": 1198124803,
-        "json": "{\"displayProperties\":{\"description\":\"Any energy type can be used.\",\"name\":\"Any\",\"icon\":\"\",\"hasIcon\":false},\"transparentIconPath\":\"\",\"showIcon\":false,\"enumValue\":0,\"costStatHash\":3578062600,\"hash\":1198124803,\"index\":0,\"redacted\":false,\"blacklisted\":false}"
-    },
-    {
-        "id": 1819698290,
-        "json": "{\"displayProperties\":{\"description\":\"Requires Stasis energy.\",\"name\":\"Stasis\",\"hasIcon\":false},\"showIcon\":false,\"enumValue\":6,\"capacityStatHash\":3950461274,\"costStatHash\":998798867,\"hash\":1819698290,\"index\":6,\"redacted\":false,\"blacklisted\":false}"
-    }
-]
+version https://git-lfs.github.com/spec/v1
+oid sha256:9a3dd40c9ad142572e748cce6f4808c6ec1a95fc7714526d02920ff8c2edf9c2
+size 2441
