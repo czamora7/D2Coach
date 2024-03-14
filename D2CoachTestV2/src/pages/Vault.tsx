@@ -11,7 +11,7 @@ import Loading from '../components/Loading.tsx';
 const Vault: React.FC = () => {
 
   //call get Inventory here
-  const [inventory,setInventory] = useState<any>([]);
+  const [response,setResponse] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
 
   let membershipType = localStorage.getItem("membershipType");
@@ -26,7 +26,7 @@ const Vault: React.FC = () => {
   useEffect(() => {
     axios.get(endpoint, {headers})
     .then(response => {
-        setInventory(response.data);
+        setResponse(response.data);
         setLoading(false);
     })
     .catch(error => {
@@ -35,10 +35,41 @@ const Vault: React.FC = () => {
       }); 
     }, []);
 
-    //end call to getInventory
+    //end call to get inventory
+    
+    //iterate through the response to get the raw array of the inventories 
+    let itemHashes;
 
-    let items:string = JSON.stringify(inventory);
-    console.log(items);
+    if(response.hasOwnProperty('Response'))
+    {
+      if(response.Response.hasOwnProperty('profileInventory'))
+      {
+        if(response.Response.profileInventory.hasOwnProperty('data'))
+        {
+          if(response.Response.profileInventory.data.hasOwnProperty('items'))
+          {
+            //console.log(inventory.Response.profileInventory.data.items);
+            let items = response.Response.profileInventory.data.items;
+            for(var key in items)
+            {
+              if(items.hasOwnProperty(key))
+              {
+                if(items[key].hasOwnProperty('location'))
+                {
+                  console.log(items[key]);
+                  /*if(items[key].location.includes('2'))
+                  {
+                    //save items[key] here
+                    console.log(items[key]);
+                  }*/
+                }
+              }
+            }
+          }//end prop checking chain
+        }
+      }
+    }
+    
 
   const kdata = [["","","",""],
                 ["","","",""]];
