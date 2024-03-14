@@ -37,8 +37,8 @@ const Vault: React.FC = () => {
 
     //end call to get inventory
     
-    //iterate through the response to get the raw array of the inventories 
-    let itemHashes;
+    //iterate through the response to get the array of vault items 
+    let itemHashes:string[] = [];
 
     if(response.hasOwnProperty('Response'))
     {
@@ -49,18 +49,17 @@ const Vault: React.FC = () => {
           if(response.Response.profileInventory.data.hasOwnProperty('items'))
           {
             let items = response.Response.profileInventory.data.items;
-            //console.log(items);
             for(var key in items)
             {
-                if(items[key].hasOwnProperty('location')&&items[key].hasOwnProperty('itemInstanceId'))
+                if(items[key].hasOwnProperty('itemInstanceId')&&items[key].hasOwnProperty('itemHash'))
                 {
-                  //save data here
+                  itemHashes.push(items[key].itemHash);
                 }
-            }
-          }//end prop checking chain
+            }//end iteration through items
+          }
         }
       }
-    }
+    }//end prop checking chain
     
 
   const kdata = [["","","",""],
