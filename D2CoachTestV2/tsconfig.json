@@ -1,25 +1,3 @@
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:cb4dd1777bc7f478cb417906c32099ae5e661865b3181df116ac70790e9a1a7e
+size 630
