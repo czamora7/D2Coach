@@ -48,22 +48,14 @@ const Vault: React.FC = () => {
         {
           if(response.Response.profileInventory.data.hasOwnProperty('items'))
           {
-            //console.log(inventory.Response.profileInventory.data.items);
             let items = response.Response.profileInventory.data.items;
+            //console.log(items);
             for(var key in items)
             {
-              if(items.hasOwnProperty(key))
-              {
-                if(items[key].hasOwnProperty('location'))
+                if(items[key].hasOwnProperty('location')&&items[key].hasOwnProperty('itemInstanceId'))
                 {
-                  console.log(items[key]);
-                  /*if(items[key].location.includes('2'))
-                  {
-                    //save items[key] here
-                    console.log(items[key]);
-                  }*/
+                  //save data here
                 }
-              }
             }
           }//end prop checking chain
         }
