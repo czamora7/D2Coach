@@ -21,7 +21,6 @@ async function getCollection() {
         var inventory = response.data;
         console.log('Profile collectibles:', inventory);
     })
-    
     .catch(error => {
         console.error('Error fetching account collectibles:', error);
         console.log('Error response:', error.response ? error.response.data : 'No response data');
