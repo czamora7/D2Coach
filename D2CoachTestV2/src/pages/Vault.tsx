@@ -70,12 +70,12 @@ const Vault: React.FC = () => {
         {
           if(destinyInventoryItemDefinition[key].hasOwnProperty('id')&&destinyInventoryItemDefinition[key].hasOwnProperty('json')&&JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
           {
-            itemData.push(destinyInventoryItemDefinition[key].json);
+            itemData.push(destinyInventoryItemDefinition[key]);
           }
         }
     }
 
-    console.log(itemData);
+    console.log(itemHashes);
 
     //TODO: use this condition to check if a passed in itemHash is in destinyInventoryItemDefinition
     /*if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
