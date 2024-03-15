@@ -7,6 +7,7 @@ import '../styles/Vault.css';
 import { globalData } from '../global';
 import axios from 'axios';
 import Loading from '../components/Loading.tsx';
+import destinyInventoryItemDefinition from '../assets/Manifest/DestinyInventoryItemDefinition.json';
 
 const Vault: React.FC = () => {
 
@@ -38,7 +39,7 @@ const Vault: React.FC = () => {
     //end call to get inventory
     
     //iterate through the response to get the array of vault items 
-    let itemHashes:string[] = [];
+    let itemHashes:any[] = [];
 
     if(response.hasOwnProperty('Response'))
     {
@@ -60,6 +61,8 @@ const Vault: React.FC = () => {
         }
       }
     }//end prop checking chain
+
+    //console.log(destinyInventoryItemDefinition[itemHashes[0]]);
     
 
   const kdata = [["","","",""],
