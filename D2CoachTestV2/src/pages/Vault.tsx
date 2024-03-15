@@ -7,7 +7,7 @@ import '../styles/Vault.css';
 import { globalData } from '../global';
 import axios from 'axios';
 import Loading from '../components/Loading.tsx';
-import destinyInventoryItemDefinition from '../assets/Manifest/DestinyInventoryItemDefinition.json';
+import destinyInventoryItem from '../assets/Manifest/DestinyInventoryItemDefinition.json';
 
 const Vault: React.FC = () => {
 
@@ -62,6 +62,7 @@ const Vault: React.FC = () => {
       }
     }//end prop checking chain
 
+    let destinyInventoryItemDefinition:any = destinyInventoryItem;
     let itemData:any[] = [];
     /*for(let itemHash of itemHashes)
     {
