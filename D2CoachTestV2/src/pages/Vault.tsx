@@ -39,7 +39,7 @@ const Vault: React.FC = () => {
     //end call to get inventory
     
     //iterate through the response to get the array of vault items 
-    let itemHashes:any[] = [];
+    let itemHashes:string[] = [];
 
     if(response.hasOwnProperty('Response'))
     {
@@ -54,7 +54,7 @@ const Vault: React.FC = () => {
             {
                 if(items[key].hasOwnProperty('itemInstanceId')&&items[key].hasOwnProperty('itemHash'))
                 {
-                  itemHashes.push(items[key].itemHash);
+                  itemHashes.push(JSON.stringify(items[key].itemHash));
                 }
             }//end iteration through items
           }
@@ -62,7 +62,31 @@ const Vault: React.FC = () => {
       }
     }//end prop checking chain
 
-    //console.log(destinyInventoryItemDefinition[itemHashes[0]]);
+    let itemData:any[] = [];
+    /*for(let itemHash of itemHashes)
+    {
+      if(destinyInventoryItemDefinition.hasOwnProperty('id')&&destinyInventoryItemDefinition.hasOwnProperty('json'))
+      {
+        for(var key in destinyInventoryItemDefinition)
+        {
+          if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
+          {
+            itemData.push(destinyInventoryItemDefinition[key]);
+          }
+        }
+      }
+    }*/
+
+    for(var key in destinyInventoryItemDefinition)
+    {
+      console.log(destinyInventoryItemDefinition[key]);
+    }
+
+    //TODO: use this condition to check if a passed in itemHash is in destinyInventoryItemDefinition
+    /*if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
+          {
+            itemData.push(destinyInventoryItemDefinition[key]);
+          }*/
     
 
   const kdata = [["","","",""],
