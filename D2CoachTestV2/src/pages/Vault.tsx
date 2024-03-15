@@ -63,26 +63,38 @@ const Vault: React.FC = () => {
     }//end prop checking chain
 
     let destinyInventoryItemDefinition:any = destinyInventoryItem;
+    
+    /*
+    //This loop is for debugging purpose only
+    let ids:string[] = [];
+    for(var key in destinyInventoryItemDefinition)
+    {
+      if(destinyInventoryItemDefinition[key].hasOwnProperty('id'))
+      {
+        ids.push(JSON.stringify(destinyInventoryItemDefinition[key].id))
+      }
+    }
+    console.log(ids);
+    console.log(destinyInventoryItemDefinition);*/
+
     let itemData:any[] = [];
     for(let itemHash of itemHashes)
     {
         for(var key in destinyInventoryItemDefinition)
         {
-          if(destinyInventoryItemDefinition[key].hasOwnProperty('id')&&destinyInventoryItemDefinition[key].hasOwnProperty('json')&&JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
+          if(destinyInventoryItemDefinition[key].hasOwnProperty('id')&&destinyInventoryItemDefinition[key].hasOwnProperty('json'))
           {
-            itemData.push(destinyInventoryItemDefinition[key]);
+            //do not put a console.log() inside this loop unless its console.log(key), just don't do it --C
+            if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
+            {
+              itemData.push(destinyInventoryItemDefinition[key]);
+            }
           }
         }
     }
 
-    console.log(itemHashes);
-
-    //TODO: use this condition to check if a passed in itemHash is in destinyInventoryItemDefinition
-    /*if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
-          {
-            itemData.push(destinyInventoryItemDefinition[key]);
-          }*/
-    
+    //console.log(itemHashes);
+    //console.log(itemData);
 
   const kdata = [["","","",""],
                 ["","","",""]];
