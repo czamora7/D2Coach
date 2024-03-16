@@ -54,6 +54,7 @@ const Vault: React.FC = () => {
             {
                 if(items[key].hasOwnProperty('itemInstanceId')&&items[key].hasOwnProperty('itemHash'))
                 {
+                  //TODO convert items[key] into an unsigned integer
                   itemHashes.push(JSON.stringify(items[key].itemHash));
                 }
             }//end iteration through items
@@ -85,7 +86,7 @@ const Vault: React.FC = () => {
           if(destinyInventoryItemDefinition[key].hasOwnProperty('id')&&destinyInventoryItemDefinition[key].hasOwnProperty('json'))
           {
             //do not put a console.log() inside this loop unless its console.log(key), just don't do it --C
-            if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash))
+            if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash)) //this comparison is where the problem is happening, could be some weird quirk of uint conversion
             {
               itemData.push(destinyInventoryItemDefinition[key]);
             }
