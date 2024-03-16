@@ -176,7 +176,9 @@ const Vault: React.FC = () => {
             <h2>Kinetic Weapons</h2>
             <br></br>
             <table className="weaponsTable">
-              <VaultDisplay rows={k1data} />
+              <tbody>
+                <VaultDisplay rows={kineticData} />
+              </tbody>
             </table>
           </div>
 
@@ -184,7 +186,9 @@ const Vault: React.FC = () => {
             <h2>Stasis Weapons</h2>
             <br></br>
             <table className="weaponsTable">
-              <VaultDisplay rows={e1data} />
+              <tbody>
+                <VaultDisplay rows={stasisData} />
+              </tbody>
             </table>
           </div>
 
@@ -192,7 +196,9 @@ const Vault: React.FC = () => {
             <h2>Strand Weapons</h2>
             <br></br>
             <table className="weaponsTable">
-              <VaultDisplay rows={h1data} />
+              <tbody>
+                <VaultDisplay rows={strandData} />
+              </tbody>
             </table>
           </div>
         </div>
@@ -202,7 +208,9 @@ const Vault: React.FC = () => {
             <h2>Solar Weapons</h2>
             <br></br>
             <table className="weaponsTable">
-              <VaultDisplay rows={k1data} />
+              <tbody>
+                <VaultDisplay rows={solarData} />
+              </tbody>
             </table>
           </div>
 
@@ -210,7 +218,9 @@ const Vault: React.FC = () => {
             <h2>Arc Weapons</h2>
             <br></br>
             <table className="weaponsTable">
-              <VaultDisplay rows={e1data} />
+              <tbody>
+                <VaultDisplay rows={arcData} />
+              </tbody>
             </table>
           </div>
 
@@ -218,7 +228,9 @@ const Vault: React.FC = () => {
             <h2>Void Weapons</h2>
             <br></br>
             <table className="weaponsTable">
-              <VaultDisplay rows={h1data} />
+              <tbody>
+                <VaultDisplay rows={voidData} />
+              </tbody>
             </table>
           </div>
         </div>
@@ -231,7 +243,9 @@ const Vault: React.FC = () => {
           <h2>Armor</h2>
           <br></br>
           <table className="armorTable">
-            <VaultDisplay rows={a1data} />
+            <tbody>
+              <VaultDisplay rows={armorData} />
+            </tbody>
           </table>
         </div>
 
