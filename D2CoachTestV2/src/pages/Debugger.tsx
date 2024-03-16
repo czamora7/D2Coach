@@ -2,20 +2,23 @@ import React from 'react';
 
 // import getManifest from './apiRequests/getDestinyManifest';
 // import getCurrentUser from '../apiRequests/getUserProfile'; 
-import getAccInfo from '../apiRequests/getNeededAccData';
+// import getAccInfo from '../apiRequests/getNeededAccData';
 import Thumbnail from '../components/Thumbnail';
-import { globalData } from '../global';
-import getInventory from '../apiRequests/getInventory';
-import getCollection from '../apiRequests/getCollection';
+// import { globalData } from '../global';
+// import getInventory from '../apiRequests/getInventory';
+// import getCollection from '../apiRequests/getCollection';
+import convertToSignedInt from '../components/UnsignedToSigned';
 
 const Debugger: React.FC = () => {
 
  // getManifest();
-  getAccInfo();
-  console.log(globalData.D2ClassList);
-  console.log(globalData.inventory);
+ // getAccInfo();
+  // console.log(globalData.D2ClassList);
+  // console.log(globalData.inventory);
  // console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
- 
+  var number = "3123000000";
+  console.log("Inputted value: " + number);
+  console.log("The return value is: " + convertToSignedInt(number));
   return <div>Welcome to the Debugger/Console.log() Page.
   
     <p></p>
