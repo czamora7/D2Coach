@@ -94,8 +94,8 @@ const Vault: React.FC = () => {
         }
     }
 
-    //console.log(itemHashes);
-    //console.log(itemData);
+    console.log(itemHashes);
+    console.log(itemData);
 
   const kdata = [["","","",""],
                 ["","","",""]];
