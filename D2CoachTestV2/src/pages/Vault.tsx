@@ -173,64 +173,52 @@ const Vault: React.FC = () => {
       <div className="weapons">
         <div className="kineticSlot">
           <div id="kinetic">
-            <h2>Kinetic Weapons</h2>
+            <h2>Kinetic</h2>
             <br></br>
             <table className="weaponsTable">
-              <tbody>
                 <VaultDisplay rows={kineticData} />
-              </tbody>
             </table>
           </div>
 
           <div id="stasis">
-            <h2>Stasis Weapons</h2>
+            <h2>Stasis</h2>
             <br></br>
             <table className="weaponsTable">
-              <tbody>
                 <VaultDisplay rows={stasisData} />
-              </tbody>
             </table>
           </div>
 
           <div id="strand">
-            <h2>Strand Weapons</h2>
+            <h2>Strand</h2>
             <br></br>
             <table className="weaponsTable">
-              <tbody>
                 <VaultDisplay rows={strandData} />
-              </tbody>
             </table>
           </div>
         </div>
         
         <div className="energySlot">
           <div id="solar">
-            <h2>Solar Weapons</h2>
+            <h2>Solar</h2>
             <br></br>
             <table className="weaponsTable">
-              <tbody>
                 <VaultDisplay rows={solarData} />
-              </tbody>
             </table>
           </div>
 
           <div id="arc">
-            <h2>Arc Weapons</h2>
+            <h2>Arc</h2>
             <br></br>
             <table className="weaponsTable">
-              <tbody>
                 <VaultDisplay rows={arcData} />
-              </tbody>
             </table>
           </div>
 
           <div id="void">
-            <h2>Void Weapons</h2>
+            <h2>Void</h2>
             <br></br>
             <table className="weaponsTable">
-              <tbody>
                 <VaultDisplay rows={voidData} />
-              </tbody>
             </table>
           </div>
         </div>

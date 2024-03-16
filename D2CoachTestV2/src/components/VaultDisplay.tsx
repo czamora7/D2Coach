@@ -9,16 +9,14 @@ interface VaultProps{
 
 const VaultDisplay = ({rows}:VaultProps) => 
 {
+    const rowData = [];
+    
     for(let i = 0; i < rows.length; i+=5)
     {
-        return(
-        <Fragment>
-            <tr>
-                {rows.slice(i, i+5).map((index)=> <td><Thumbnail src={index} fallback={imagePath}></Thumbnail></td>)}
-            </tr>
-        </Fragment>
-        )
+        rowData.push(<tr>{rows.slice(i, i+5).map((index)=> <td><Thumbnail src={index} fallback={imagePath}></Thumbnail></td>)}</tr>);
     }
+
+    return <tbody>{rowData}</tbody>;
 }
   
 export default VaultDisplay;
