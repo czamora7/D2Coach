@@ -10,6 +10,12 @@ import Loading from '../components/Loading.tsx';
 import destinyInventoryItem from '../assets/Manifest/DestinyInventoryItemDefinition.json';
 import convertToSignedInt from '../components/UnsignedToSigned.tsx';
 
+interface vaultItem {
+  icon:string;
+  itemType:number;
+  damageType:number;
+}
+
 const Vault: React.FC = () => {
 
   //call get Inventory here
@@ -55,7 +61,6 @@ const Vault: React.FC = () => {
             {
                 if(items[key].hasOwnProperty('itemInstanceId')&&items[key].hasOwnProperty('itemHash'))
                 {
-                  //TODO convert items[key] into an unsigned integer
                   let str = JSON.stringify(items[key].itemHash);
                   let itemHash = convertToSignedInt(str);
                   itemHashes.push(itemHash);
@@ -79,7 +84,8 @@ const Vault: React.FC = () => {
       }
     }
     console.log(ids);
-    console.log(destinyInventoryItemDefinition);*/
+    console.log(destinyInventoryItemDefinition);
+    */
 
     let itemData:any[] = [];
     for(let itemHash of itemHashes)
@@ -89,28 +95,74 @@ const Vault: React.FC = () => {
           if(destinyInventoryItemDefinition[key].hasOwnProperty('id')&&destinyInventoryItemDefinition[key].hasOwnProperty('json'))
           {
             //do not put a console.log() inside this loop unless its console.log(key), just don't do it --C
-            if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash)) //this comparison is where the problem is happening, could be some weird quirk of uint conversion
+            if(JSON.stringify(destinyInventoryItemDefinition[key].id).includes(itemHash)) 
             {
-              itemData.push(destinyInventoryItemDefinition[key]);
+              itemData.push(destinyInventoryItemDefinition[key].json);
             }
           }
         }
     }
 
-    console.log(itemHashes);
-    console.log(itemData);
+    //console.log(itemHashes);
+    //console.log(itemData);
+    
+    let vaultItems:vaultItem[] = [];
+    //loop through the item data and get the icons
+    for(var key in itemData)
+    {
+      let json = JSON.parse(itemData[key]);
 
-  const kdata = [["","","",""],
-                ["","","",""]];
+      if(json.hasOwnProperty('displayProperties')&&json.hasOwnProperty('itemType')&&json.hasOwnProperty('defaultDamageType'))
+      {
+        if(json.displayProperties.hasOwnProperty('icon'))
+        {
+            let item:vaultItem={icon:"https://www.bungie.net" + json.displayProperties.icon,
+                                itemType:parseInt(JSON.stringify(json.itemType)),
+                                damageType:parseInt(JSON.stringify(json.defaultDamageType))};
+            vaultItems.push(item);
+        }
+      }
+    }
 
-  const edata = [["","","",""],
-                ["","","",""]];
+    //console.log(vaultItems);
 
-  const hdata = [["","","",""],
-                ["","","",""]];
+    let kineticData:string[]=[],solarData:string[]=[],voidData:string[]=[],arcData:string[]=[],strandData:string[]=[],stasisData:string[] = [],armorData:string[] = [];
+    
+    for(var item of vaultItems)
+    {
+      switch(item.damageType)
+      {
+        case 0: {
+          armorData.push(item.icon);
+          break;
+        }
+        case 1: {
+          kineticData.push(item.icon);
+          break;
+        }
+        case 2: {
+          arcData.push(item.icon);
+          break;
+        }
+        case 3: {
+          solarData.push(item.icon);
+          break;
+        }
+        case 4: {
+          voidData.push(item.icon);
+          break;
+        }
+        case 6: {
+          stasisData.push(item.icon);
+          break;
+        }
+        case 7: {
+          strandData.push(item.icon);
+        }
+      }
+    }
 
-  const adata = [["","","",""],
-                ["","","",""]];
+
 
   if(isLoading)
   {
@@ -119,29 +171,58 @@ const Vault: React.FC = () => {
 
   return <Fragment>
       <div className="weapons">
-        <div id="kinetic">
-          <h2>Kinetic Weapons</h2>
-          <br></br>
-          <table className="weaponsTable">
-            <VaultDisplay rows={kdata} />
-          </table>
+        <div className="kineticSlot">
+          <div id="kinetic">
+            <h2>Kinetic Weapons</h2>
+            <br></br>
+            <table className="weaponsTable">
+              <VaultDisplay rows={k1data} />
+            </table>
+          </div>
+
+          <div id="stasis">
+            <h2>Stasis Weapons</h2>
+            <br></br>
+            <table className="weaponsTable">
+              <VaultDisplay rows={e1data} />
+            </table>
+          </div>
+
+          <div id="strand">
+            <h2>Strand Weapons</h2>
+            <br></br>
+            <table className="weaponsTable">
+              <VaultDisplay rows={h1data} />
+            </table>
+          </div>
+        </div>
+        
+        <div className="energySlot">
+          <div id="solar">
+            <h2>Solar Weapons</h2>
+            <br></br>
+            <table className="weaponsTable">
+              <VaultDisplay rows={k1data} />
+            </table>
+          </div>
+
+          <div id="arc">
+            <h2>Arc Weapons</h2>
+            <br></br>
+            <table className="weaponsTable">
+              <VaultDisplay rows={e1data} />
+            </table>
+          </div>
+
+          <div id="void">
+            <h2>Void Weapons</h2>
+            <br></br>
+            <table className="weaponsTable">
+              <VaultDisplay rows={h1data} />
+            </table>
+          </div>
         </div>
 
-        <div id="energy">
-          <h2>Energy Weapons</h2>
-          <br></br>
-          <table className="weaponsTable">
-            <VaultDisplay rows={edata} />
-          </table>
-        </div>
-
-        <div id="heavy">
-          <h2>Heavy Weapons</h2>
-          <br></br>
-          <table className="weaponsTable">
-            <VaultDisplay rows={hdata} />
-          </table>
-        </div>
       </div>
 
         <br></br>
@@ -150,7 +231,7 @@ const Vault: React.FC = () => {
           <h2>Armor</h2>
           <br></br>
           <table className="armorTable">
-            <VaultDisplay rows={adata} />
+            <VaultDisplay rows={a1data} />
           </table>
         </div>
 
