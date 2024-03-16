@@ -9,6 +9,7 @@ const LoadoutBuilder: React.FC = () => {
   const [exoticArmor,setExoticArmor] = useState<any>([]);
   const [exoticWeapon,setExoticWeapon] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
+  const[formInputs,setFormInputs] = useState({});
 
   let membershipType = localStorage.getItem("membershipType");
   let destinyMembershipId = localStorage.getItem("membershipId");
@@ -56,6 +57,10 @@ const LoadoutBuilder: React.FC = () => {
   console.log(exoticArmorData);
   console.log(exoticWeaponData);
 
+  //pass in each item hash to a function that will compute its associated 'points' object
+  //take the top 5 options returned
+  //query the manifest with their hashes
+  //display their icons in the loadoutDisplay
 
   if(isLoading)
   {
@@ -66,9 +71,9 @@ const LoadoutBuilder: React.FC = () => {
     <Fragment>
       <div className="leftside">
         <div className="form">
-        <form id="loadout-input" method="POST">
+        <form>
           <label>Activity</label>
-          <br></br>
+          <br />
           <select>
             <option value="Crucible">Crucible</option>
             <option value="Vanguard">Vanguard</option>
@@ -76,39 +81,41 @@ const LoadoutBuilder: React.FC = () => {
             <option value="Raid">Raid</option>
           </select>
           
-          <br></br>
-          <br></br>
+          <br />
+          <br />
 
           <label>Class</label>
-          <br></br>
+          <br />
           <select>
             <option value="titan">Titan</option>
             <option value="hunter">Hunter</option>
             <option value="warlock">Warlock</option>
           </select>
           
-          <br></br>
-          <br></br>
+          <br />
+          <br />
 
           <label>Subclass (optional)</label>
-          <br></br>
+          <br />
           <select>
             <option value="arc">Arc</option>
             <option value="void">Void</option>
             <option value="solar">Solar</option>
           </select>
           
-          <br></br>
-          <br></br>
+          <br />
+          <br />
 
           <label>Role (optional)</label>
-          <br></br>
+          <br />
           <select>
             <option value="Invader">Invader</option>
             <option value="Collector">Collector</option>
             <option value="Sentry">Sentry</option>
             <option value="Reaper">Reaper</option>
           </select>
+          <br />
+          <button type="submit">Build My Loadout</button>
         </form>
         </div>
       </div>

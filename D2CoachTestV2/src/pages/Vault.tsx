@@ -8,6 +8,7 @@ import { globalData } from '../global';
 import axios from 'axios';
 import Loading from '../components/Loading.tsx';
 import destinyInventoryItem from '../assets/Manifest/DestinyInventoryItemDefinition.json';
+import convertToSignedInt from '../components/UnsignedToSigned.tsx';
 
 const Vault: React.FC = () => {
 
@@ -55,7 +56,9 @@ const Vault: React.FC = () => {
                 if(items[key].hasOwnProperty('itemInstanceId')&&items[key].hasOwnProperty('itemHash'))
                 {
                   //TODO convert items[key] into an unsigned integer
-                  itemHashes.push(JSON.stringify(items[key].itemHash));
+                  let str = JSON.stringify(items[key].itemHash);
+                  let itemHash = convertToSignedInt(str);
+                  itemHashes.push(itemHash);
                 }
             }//end iteration through items
           }
