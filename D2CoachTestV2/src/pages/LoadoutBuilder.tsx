@@ -4,10 +4,11 @@ import LoadoutDisplay from '../components/LoadoutDisplay';
 import { globalData } from '../global';
 import axios from 'axios';
 import Loading from '../components/Loading';
+import convertToSignedInt from '../components/UnsignedToSigned';
 
 const LoadoutBuilder: React.FC = () => {
-  const [exoticArmor,setExoticArmor] = useState<any>([]);
-  const [exoticWeapon,setExoticWeapon] = useState<any>([]);
+  const [exoticArmorResponse,setExoticArmorResponse] = useState<any>([]);
+  const [exoticWeaponResponse,setExoticWeaponResponse] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
   const[formInputs,setFormInputs] = useState({});
 
@@ -29,7 +30,7 @@ const LoadoutBuilder: React.FC = () => {
     axios
     .get(armorEndpoint, { headers })
     .then((response) => {
-      setExoticArmor(response.data);
+      setExoticArmorResponse(response.data);
     })
 
     .catch((error) => {
@@ -42,7 +43,7 @@ const LoadoutBuilder: React.FC = () => {
     axios
     .get(weaponEndpoint, { headers })
     .then((response) => {
-      setExoticWeapon(response.data);
+      setExoticWeaponResponse(response.data);
       setLoading(false);
     })
 
@@ -52,11 +53,52 @@ const LoadoutBuilder: React.FC = () => {
     });
   }, []);
 
-  let exoticArmorData:string = JSON.stringify(exoticArmor);
-  let exoticWeaponData:string = JSON.stringify(exoticWeapon);
-  console.log(exoticArmorData);
-  console.log(exoticWeaponData);
+  let exoticArmor:any[] = [];
+  let exoticWeapons:any[] = [];
 
+  if(exoticArmorResponse.hasOwnProperty('Response')&&exoticWeaponResponse.hasOwnProperty('Response'))
+  {
+    if(exoticArmorResponse.Response.hasOwnProperty('collectibles')&&exoticWeaponResponse.Response.hasOwnProperty('collectibles'))
+    {
+      if(exoticArmorResponse.Response.collectibles.hasOwnProperty('data')&&exoticWeaponResponse.Response.collectibles.hasOwnProperty('data'))
+      {
+        if(exoticArmorResponse.Response.collectibles.data.hasOwnProperty('collectibles')&&exoticWeaponResponse.Response.collectibles.data.hasOwnProperty('collectibles'))
+        {
+          exoticArmor = exoticArmorResponse.Response.collectibles.data.collectibles;
+          exoticWeapons = exoticWeaponResponse.Response.collectibles.data.collectibles;
+        }
+      }
+    }
+  }
+
+  //console.log(exoticArmor);
+  //console.log(exoticWeapons);
+
+  let itemHashes:string[] = [];
+
+  for(var key in exoticArmor)
+  {
+    if(exoticArmor[key].hasOwnProperty('state'))
+    {
+      if(!JSON.stringify(exoticArmor[key]).includes('1')) //1 means NotAcquired
+      {
+        itemHashes.push(convertToSignedInt(parseInt(key).toString()));
+      }
+    }
+  }
+
+  for(var key in exoticWeapons)
+  {
+    if(exoticWeapons[key].hasOwnProperty('state'))
+    {
+      if(!JSON.stringify(exoticWeapons[key]).includes('1')) //1 means NotAcquired
+      {
+        itemHashes.push(convertToSignedInt(parseInt((key)).toString()));
+      }
+    }
+  }
+
+  //console.log(itemHashes);
   //pass in each item hash to a function that will compute its associated 'points' object
   //take the top 5 options returned
   //query the manifest with their hashes
