@@ -176,7 +176,7 @@ const Vault: React.FC = () => {
             <h2>Kinetic</h2>
             <br></br>
             <table className="weaponsTable">
-                <VaultDisplay rows={kineticData} />
+                <VaultDisplay rows={kineticData} size={5}/>
             </table>
           </div>
 
@@ -184,7 +184,7 @@ const Vault: React.FC = () => {
             <h2>Stasis</h2>
             <br></br>
             <table className="weaponsTable">
-                <VaultDisplay rows={stasisData} />
+                <VaultDisplay rows={stasisData} size={5}/>
             </table>
           </div>
 
@@ -192,7 +192,7 @@ const Vault: React.FC = () => {
             <h2>Strand</h2>
             <br></br>
             <table className="weaponsTable">
-                <VaultDisplay rows={strandData} />
+                <VaultDisplay rows={strandData} size={5} />
             </table>
           </div>
         </div>
@@ -202,7 +202,7 @@ const Vault: React.FC = () => {
             <h2>Solar</h2>
             <br></br>
             <table className="weaponsTable">
-                <VaultDisplay rows={solarData} />
+                <VaultDisplay rows={solarData} size={5}/>
             </table>
           </div>
 
@@ -210,7 +210,7 @@ const Vault: React.FC = () => {
             <h2>Arc</h2>
             <br></br>
             <table className="weaponsTable">
-                <VaultDisplay rows={arcData} />
+                <VaultDisplay rows={arcData} size={5}/>
             </table>
           </div>
 
@@ -218,7 +218,7 @@ const Vault: React.FC = () => {
             <h2>Void</h2>
             <br></br>
             <table className="weaponsTable">
-                <VaultDisplay rows={voidData} />
+                <VaultDisplay rows={voidData} size={5}/>
             </table>
           </div>
         </div>
@@ -232,7 +232,7 @@ const Vault: React.FC = () => {
           <br></br>
           <table className="armorTable">
             <tbody>
-              <VaultDisplay rows={armorData} />
+              <VaultDisplay rows={armorData} size={18}/>
             </tbody>
           </table>
         </div>
