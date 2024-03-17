@@ -1,16 +1,31 @@
-import React, { Fragment,useState,useEffect } from 'react';
+import React, { Fragment,useState,useEffect,SyntheticEvent } from 'react';
 import '../styles/LoadoutBuilder.css';
 import LoadoutDisplay from '../components/LoadoutDisplay';
 import { globalData } from '../global';
 import axios from 'axios';
 import Loading from '../components/Loading';
 import convertToSignedInt from '../components/UnsignedToSigned';
+import {useForm} from "react-hook-form";
+
+interface FormData {
+  Activity: string;
+  Class: string;
+  Subclass?: string;
+  Role?: string;
+};
 
 const LoadoutBuilder: React.FC = () => {
+  let defaultValues: FormData = {
+    Activity: 'Crucible',
+    Class: 'Titan',
+    Subclass:'',
+    Role:''};
+
   const [exoticArmorResponse,setExoticArmorResponse] = useState<any>([]);
   const [exoticWeaponResponse,setExoticWeaponResponse] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
-  const[formInputs,setFormInputs] = useState({});
+  const {register, watch, formState: {errors}, handleSubmit} = useForm<FormData>({defaultValues});
+  const [formStatus,setFormStatus] = useState<FormData>(defaultValues);
 
   let membershipType = localStorage.getItem("membershipType");
   let destinyMembershipId = localStorage.getItem("membershipId");
@@ -99,7 +114,8 @@ const LoadoutBuilder: React.FC = () => {
   }
 
   //console.log(itemHashes);
-  //pass in each item hash to a function that will compute its associated 'points' object
+  
+  //pass in each item hash to a function that will compute its associated 'points' object (taking into account the user-defined options in the formStatus variable)
   //take the top 5 options returned
   //query the manifest with their hashes
   //display their icons in the loadoutDisplay
@@ -109,55 +125,66 @@ const LoadoutBuilder: React.FC = () => {
     return <Loading />
   }
 
+  const onSubmit = (data:FormData) => {setFormStatus(data);console.log(data)}
+
   return (
     <Fragment>
       <div className="leftside">
         <div className="form">
-        <form>
-          <label>Activity</label>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>Activity
           <br />
-          <select>
+          <select {...register("Activity")}>
             <option value="Crucible">Crucible</option>
             <option value="Vanguard">Vanguard</option>
             <option value="Gambit">Gambit</option>
             <option value="Raid">Raid</option>
           </select>
+          </label>
           
           <br />
           <br />
 
-          <label>Class</label>
+          <label>Class
           <br />
-          <select>
-            <option value="titan">Titan</option>
-            <option value="hunter">Hunter</option>
-            <option value="warlock">Warlock</option>
+          <select {...register("Class")}>
+            <option value="Titan">Titan</option>
+            <option value="Hunter">Hunter</option>
+            <option value="Warlock">Warlock</option>
           </select>
+          </label>
           
           <br />
           <br />
 
-          <label>Subclass (optional)</label>
-          <br />
-          <select>
-            <option value="arc">Arc</option>
-            <option value="void">Void</option>
-            <option value="solar">Solar</option>
-          </select>
+          <label>Subclass (optional)
+            <br />
+            <select {...register("Subclass")}>
+              <option value=""></option>
+              <option value="Arc">Arc</option>
+              <option value="Void">Void</option>
+              <option value="Solar">Solar</option>
+            </select>
+          </label>
           
           <br />
           <br />
 
-          <label>Role (optional)</label>
+          <label>Role (Gambit Only)
           <br />
-          <select>
+          <select {...register("Role")}>
+            <option value=""></option>
             <option value="Invader">Invader</option>
             <option value="Collector">Collector</option>
             <option value="Sentry">Sentry</option>
             <option value="Reaper">Reaper</option>
           </select>
+          </label>
+
           <br />
-          <button type="submit">Build My Loadout</button>
+          <br />
+
+          <button type="submit" value="submit">Build My Loadout</button>
         </form>
         </div>
       </div>

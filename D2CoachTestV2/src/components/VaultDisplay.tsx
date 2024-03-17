@@ -14,7 +14,7 @@ const VaultDisplay = ({rows,size}:VaultProps) =>
     
     for(let i = 0; i < rows.length; i+=size)
     {
-        rowData.push(<tr>{rows.slice(i, i+size).map((index)=> <td><Thumbnail src={index} fallback={imagePath}></Thumbnail></td>)}</tr>);
+        rowData.push(<tr>{rows.slice(i, i+size).map((index)=> <td><Thumbnail src={index} fallback={imagePath}></Thumbnail></td>)}</tr>); //TODO assign key to each <td>
     }
 
     return <tbody>{rowData}</tbody>;
