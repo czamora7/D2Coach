@@ -6,12 +6,14 @@ import axios from 'axios';
 import Loading from '../components/Loading';
 import convertToSignedInt from '../components/UnsignedToSigned';
 import {useForm} from "react-hook-form";
+import {LoadoutItems, calculateLoadouts} from '../components/CalculateLoadouts';
+
 
 interface FormData {
   Activity: string;
   Class: string;
-  Subclass?: string;
-  Role?: string;
+  Subclass: string;
+  Role: string;
 };
 
 const LoadoutBuilder: React.FC = () => {
@@ -24,7 +26,7 @@ const LoadoutBuilder: React.FC = () => {
   const [exoticArmorResponse,setExoticArmorResponse] = useState<any>([]);
   const [exoticWeaponResponse,setExoticWeaponResponse] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
-  const {register, watch, formState: {errors}, handleSubmit} = useForm<FormData>({defaultValues});
+  const {register, watch, formState: {errors}, handleSubmit} = useForm<FormData>({defaultValues}); //see https://react-hook-form.com/docs/useform/watch for details on these constants
   const [formStatus,setFormStatus] = useState<FormData>(defaultValues);
 
   let membershipType = localStorage.getItem("membershipType");
@@ -116,6 +118,7 @@ const LoadoutBuilder: React.FC = () => {
   //console.log(itemHashes);
   
   //pass in each item hash to a function that will compute its associated 'points' object (taking into account the user-defined options in the formStatus variable)
+  let loadoutItems = calculateLoadouts(itemHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
   //take the top 5 options returned
   //query the manifest with their hashes
   //display their icons in the loadoutDisplay
