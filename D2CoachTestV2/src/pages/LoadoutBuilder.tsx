@@ -91,7 +91,7 @@ const LoadoutBuilder: React.FC = () => {
   //console.log(exoticArmor);
   //console.log(exoticWeapons);
 
-  let itemHashes:string[] = [];
+  let collectibleHashes:string[] = [];
 
   for(var key in exoticArmor)
   {
@@ -99,7 +99,7 @@ const LoadoutBuilder: React.FC = () => {
     {
       if(!JSON.stringify(exoticArmor[key]).includes('1')) //1 means NotAcquired
       {
-        itemHashes.push(convertToSignedInt(parseInt(key).toString()));
+        collectibleHashes.push(convertToSignedInt(parseInt(key).toString()));
       }
     }
   }
@@ -110,7 +110,7 @@ const LoadoutBuilder: React.FC = () => {
     {
       if(!JSON.stringify(exoticWeapons[key]).includes('1')) //1 means NotAcquired
       {
-        itemHashes.push(convertToSignedInt(parseInt((key)).toString()));
+        collectibleHashes.push(convertToSignedInt(parseInt((key)).toString()));
       }
     }
   }
@@ -118,7 +118,7 @@ const LoadoutBuilder: React.FC = () => {
   //console.log(itemHashes);
   
   //pass in each item hash to a function that will compute its associated 'points' object (taking into account the user-defined options in the formStatus variable)
-  let loadoutItems = calculateLoadouts(itemHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
+  let loadoutItems = calculateLoadouts(collectibleHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
   //take the top 5 options returned
   //query the manifest with their hashes
   //display their icons in the loadoutDisplay
