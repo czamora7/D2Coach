@@ -2,8 +2,8 @@ export interface LoadoutItems {
   weaponitemHash: string;
   armorItemHash: string;
   subclass: string;
-  pve: number;
-  pvp: number;
+  //pve: number;
+  //pvp: number;
 }
 
 interface elementalTypes {
@@ -14,6 +14,16 @@ interface elementalTypes {
     void:string[];
     solar:string[];
 }
+
+interface weaponElement {
+    primary:elementalTypes;
+    special:elementalTypes;
+    heavy:elementalTypes;
+}
+
+/*hashes for class glaives:'1089205875' Edge of Intent,'-484684054' Edge of Action,'328283190' Edge of Concurrence, 
+the reason these aren't included in loadout calculations is twofold: one, they're class dependent, and two, in their current state I can't in good conscience recommend them
+to any player*/
 
 const titanNeutral:string[] = [ '-1822976808' /*Peacekeepers*/,  '-1822976807' /*Lion Rampant*/, '-1822976806' /*Mk. 44 Stand Asides*/,
                                 '-1822976805' /*Dunemarchers*/, '-1822976803' /*Antaeus Wards*/, '-743956020' /*Precious Scars*/,
@@ -55,82 +65,70 @@ const warlockArc:string[] = ['-1133298751' /*Fallen Sunstar*/,'-548613756' /*Get
 
 const warlockExotics:elementalTypes = {neutral:warlockNeutral, stasis:warlockStasis, strand:warlockStrand, solar:warlockSolar, arc:warlockArc, void:warlockVoid};
 
-const hunterExotics:string[] = [
-  '-2075990234' /*Renewal Grasps*/, '-2051434273' /*Blight Ranger*/,
-  '-1996058095' /*Liar's Handshake*/, '-1964284332' /*Gyrfalcon's Hauberk*/,
-  '-1772384971' /*Star-Eater Scales*/, '-1259327464' /*Gwisin Vest*/,
-  '-1259327463' /*The Sixth Coyote*/, '-1259327461' /*Raiju's Harness*/,
-  '-1259327460' /*Lucky Raspberry*/, '-1259327459' /*Raiden Flux*/,
-  '-1259327458' /*Ophidia Spathe*/, '-1259327457' /*The Dragon's Shadow*/,
-  '-858015003' /*Caliban's Hand*/, '-573033380' /*Triton Vice*/,
-  '63626229' /*Mothkeeper's Wraps*/, '117301517' /*Athrys's Embrace*/,
-  '182540649' /*Radiant Dance Machines*/, '761958733' /*Speedloader Slacks*/,
-  '899828456' /*Assassin's Cowl*/, '975121088' /*The Bombardiers*/,
-  '975121089' /*Fr0st-EE5*/, '975121092' /*Orpheus Rig*/, '975121093' /*Lucky Pants*/,
-  '975121094' /*Gemini Jester*/, '975121095' /*St0mp-EE5*/,
-  '1173508384' /*Khepri's Sting*/, '1234605992' /*Foetracer*/,
-  '1234605993' /*Graviton Forfeit*/, '1234605994' /*Knucklehead Radar*/,
-  '1234605995' /*Celestial Nighthawk*/, '1234605998' /*Wormhusk Crown*/,
-  '1240167152' /*Shinobu's Vow*/, '1240167153' /*Aeon Swift*/,
-  '1240167154' /*Mechaneer's Tricksleeves*/,
-  '1240167155' /*Young Ahamkara's Spine*/, '1240167157' /*Oathkeeper*/,
-  '1240167158' /*Shards of Galanor*/, '1240167159' /*Sealed Ahamkara Grasps*/,
-  '1244896500' /*Mask of Bakris*/, '1339968002' /*Cyrtarachne's Facade*/,
-  '1434922082' /*Omnioculus*/,
-];
+const hunterNeutral:string[] = ['-1772384971' /*Star-Eater Scales*/,'-1259327463' /*The Sixth Coyote*/, '-1259327457' /*The Dragon's Shadow*/,
+                                '-573033380' /*Triton Vice*/,'63626229' /*Mothkeeper's Wraps*/,'182540649' /*Radiant Dance Machines*/, 
+                                '761958733' /*Speedloader Slacks*/,'899828456' /*Assassin's Cowl*/, '975121088' /*The Bombardiers*/,
+                                '975121089' /*Fr0st-EE5*/,  '975121093' /*Lucky Pants*/,'975121094' /*Gemini Jester*/, 
+                                '975121095' /*St0mp-EE5*/,'1234605992' /*Foetracer*/,'1234605994' /*Knucklehead Radar*/,
+                                '1234605998' /*Wormhusk Crown*/,'1240167153' /*Aeon Swift*/, '1240167154' /*Mechaneer's Tricksleeves*/,
+                                '1240167157' /*Oathkeeper*/, '1240167159' /*Sealed Ahamkara Grasps*/,];
+const hunterStasis:string[] = ['-2075990234' /*Renewal Grasps*/,'1244896500' /*Mask of Bakris*/, ];
+const hunterStrand:string[] = ['1339968002' /*Cyrtarachne's Facade*/,];
+const hunterArc:string[] = ['-1259327461' /*Raiju's Harness*/,    '-2051434273' /*Blight Ranger*/, '-1996058095' /*Liar's Handshake*/, 
+                            '-1259327460' /*Lucky Raspberry*/, '-1259327459' /*Raiden Flux*/,'1240167152' /*Shinobu's Vow*/,
+                        ];
+const hunterVoid:string[] = ['-1964284332' /*Gyrfalcon's Hauberk*/, '-1259327464' /*Gwisin Vest*/,'975121092' /*Orpheus Rig*/,
+                            '1173508384' /*Khepri's Sting*/, '1234605993' /*Graviton Forfeit*/,   '1434922082' /*Omnioculus*/,];
+const hunterSolar:string[] = ['-1259327458' /*Ophidia Spathe*/,'-858015003' /*Caliban's Hand*/,'117301517' /*Athrys's Embrace*/,
+                                '1234605995' /*Celestial Nighthawk*/,'1240167155' /*Young Ahamkara's Spine*/,  '1240167158' /*Shards of Galanor*/,];
+
+const hunterExotics:elementalTypes = {neutral:hunterNeutral, strand:hunterStrand, stasis:hunterStasis, solar:hunterSolar, arc:hunterArc, void:hunterVoid}
+
+const primaryNeutral:string[] = [  '-1794680551' /*Outbreak Perfected*/, '-1370334904' /*Lumina*/, '-1220909023' /*The Last Word*/, '-970495063' /*Dead Man's Tale*/,
+                                    '-571865998' /*Dead Man's Tale*/, '-285283722' /*Thorn*/, '-87866938' /*Bad Juju*/,
+                                    '2143216566' /*Dead Man's Tale*/,  '192937277' /*Touch of Malice*/, '203521123' /*Necrochasm*/,
+                                    '564802913' /*MIDA Multi-Tool*/, '564802914' /*The Huckleberry*/,
+                                    '564802915' /*The Jade Rabbit*/, '564802916' /*Sturm*/,
+                                    '564802917' /*Sweet Business*/, '564802918' /*Rat King*/,
+                                    '564802919' /*Vigilance Wing*/, '564802924' /*Cerberus+1*/,
+                                    '564802925' /*SUROS Regime*/, '653763964' /*Hawkmoon*/,  '1100865290' /*Osteo Striga*/, '1161231112' /*Revision Zero*/,
+                                    '760708739' /*Revision Zero*/,  '1370087379' /*Traveler's Chosen*/, '1501322721' /*Monte Carlo*/,
+                                    '1660030044' /*Wish-Ender*/, '1660030045' /*Malfeasance*/,
+                                    '1660030046' /*Ace of Spades*/, '564802912' /*Crimson*/,'2107308931' /*No Time to Explain*/,];
+const primaryStasis:string[] = ['-1477164053' /*Cryosthesia 77K*/,'1184569884' /*Verglas Curve*/,  '1832123372' /*Wicked Implement*/, ];
+const primaryStrand:string[] = ['-1451213501' /*Final Warning*/,'-585672749' /*Quicksilver Storm*/,'-468354535' /*Wish-Keeper*/,
+                                '221021254' /*Wish-Keeper*/,];
+const primarySolar:string[] = [  '-2104895667' /*Devil's Ruin*/, '-1994501358' /*Vex Mythoclast*/,'-1965270243' /*Tarrabah*/,
+                                '-736636832' /*Hierarchy of Needs*/,'778561967' /*Tommy's Matchbook*/, '882572881' /*Ticuu's Divination*/,
+                                '1642951318' /*Polaris Lance*/, '1657028066' /*Skyburner's Oath*/,'1657028068' /*Sunshot*/,];
+const primaryVoid:string[] = ['-1477398687' /*Collective Obligation*/,'-721915492' /*Le Monarque*/,  '985132347' /*The Manticore*/, 
+                                '1657028064' /*Hard Light*/,'1657028069' /*Graviton Lance*/,'1657028071' /*Fighting Lion*/,  ];
+const primaryArc:string[] = ['-1548359105' /*Centrifuse*/, '47014674' /*Symmetry*/, '77226437' /*Trespasser*/,'1642951312' /*Trinity Ghoul*/,
+                                '1657028067' /*Riskrunner*/, ];
+
+const specialNeutral:string[] = ['-1087175849' /*Bastion*/, '24541428' /*Izanagi's Burden*/,'1028725073' /*Forerunner*/,
+                                    '1250332035' /*Witherhoard*/,'1660030047' /*The Chaperone*/,'2036397919' /*Arbalest*/,];
+const specialStasis:string[] = ['-1741457822' /*Conditional Finality*/,'1969234607' /*Ager's Scepter*/,];
+const specialStrand:string[] = ['161963863' /*The Navigator*/,];
+const specialSolar:string[] = ['-1741457822' /*Conditional Finality*/,'-1553501349' /*Eriana's Vow*/,'-710655419' /*Jötunn*/,
+                                '478622552' /*Duality*/,'461401987' /*Tessellation*/, '1642951314' /*Lord of Wolves*/, 
+                                '1642951316' /*Prometheus Lens*/, '1642951317' /*Borealis*/,  '2097871936' /*Dead Messenger*/,'1657028078' /*Merciless*/,];
+const specialVoid:string[] = ['-1665358244' /*Vexcalibur*/,'-1605938601' /*Vexcalibur*/,'-1019312974' /*Buried Bloodline*/,
+                                '-692466804' /*Lorentz Driver*/,'1392294260' /*Ruinous Effigy*/,'1642951319' /*Telesto*/,];
+const specialArc:string[] = ['-1976105140' /*The Fourth Horseman*/, '-1919623431' /*Ex Diris*/, '-266348208' /*Dead Messenger*/, '360554695' /*Dead Messenger*/,
+                                '396432035' /*Cloudstrike*/, '1657028070' /*Coldheart*/,'1977134032' /*Delicate Tomb*/, '1988948484' /*Divinity*/,]; 
+//TODO dead messenger and hard light and borealis and tessellation are technically all elemental types, but they are in specific element bins
+//because placing them in all bins would mean they would appear more than other options
+//only fixing the overall structure of the algorithm will remedy this problem
+
+const heavyNeutral:string[] = [];
+const heavyStasis:string[] = [];
+const heavyStrand:string[] = [];
+const heavySolar:string[] = [];
+const heavyVoid:string[] = [];
+const heavyArc:string[] = [];
+
 const exoticWeapons:string[] = [
-  /*~~Kinetic Weapons Start Here~~*/
-
-  '-1794680551' /*Outbreak Perfected*/, '-1741457822' /*Conditional Finality*/,
-  '-1477164053' /*Cryosthesia 77K*/, '-1451213501' /*Final Warning*/,
-  '-1370334904' /*Lumina*/, '-1220909023' /*The Last Word*/,
-  '-1087175849' /*Bastion*/, '-970495063' /*Dead Man's Tale*/,
-  '-585672749' /*Quicksilver Storm*/, '-571865998' /*Dead Man's Tale*/,
-  '-468354535' /*Wish-Keeper*/, '-285283722' /*Thorn*/, '-87866938' /*Bad Juju*/,
-  '24541428' /*Izanagi's Burden*/, '161963863' /*The Navigator*/,
-  '192937277' /*Touch of Malice*/, '203521123' /*Necrochasm*/,
-  '221021254' /*Wish-Keeper*/, '564802912' /*Crimson*/,
-  '564802913' /*MIDA Multi-Tool*/, '564802914' /*The Huckleberry*/,
-  '564802915' /*The Jade Rabbit*/, '564802916' /*Sturm*/,
-  '564802917' /*Sweet Business*/, '564802918' /*Rat King*/,
-  '564802919' /*Vigilance Wing*/, '564802924' /*Cerberus+1*/,
-  '564802925' /*SUROS Regime*/, '653763964' /*Hawkmoon*/,
-  '760708739' /*Revision Zero*/, '1028725073' /*Forerunner*/,
-  '1100865290' /*Osteo Striga*/, '1161231112' /*Revision Zero*/,
-  '1184569884' /*Verglas Curve*/, '1250332035' /*Witherhoard*/,
-  '1370087379' /*Traveler's Chosen*/, '1501322721' /*Monte Carlo*/,
-  '1660030044' /*Wish-Ender*/, '1660030045' /*Malfeasance*/,
-  '1660030046' /*Ace of Spades*/, '1660030047' /*The Chaperone*/,
-  '1832123372' /*Wicked Implement*/, '1969234607' /*Ager's Scepter*/,
-  '2036397919' /*Arbalest*/, '2107308931' /*No Time to Explain*/,
-  '2143216566' /*Dead Man's Tale*/,
-
-  /*~~Energy Weapons Start Here~~*/
-
-  '-2104895667' /*Devil's Ruin*/, '-1994501358' /*Vex Mythoclast*/,
-  '-1976105140' /*The Fourth Horseman*/, '-1965270243' /*Tarrabah*/,
-  '-1919623431' /*Ex Diris*/, '-1665358244' /*Vexcalibur*/,
-  '-1605938601' /*Vexcalibur*/, '-1553501349' /*Eriana's Vow*/,
-  '-1548359105' /*Centrifuse*/, '-1477398687' /*Collective Obligation*/,
-  '-1019312974' /*Buried Bloodline*/, '-736636832' /*Hierarchy of Needs*/,
-  '-721915492' /*Le Monarque*/, '-710655419' /*Jötunn*/,
-  '-692466804' /*Lorentz Driver*/, '-484684054' /*Edge of Action*/,
-  '-266348208' /*Dead Messenger*/, '47014674' /*Symmetry*/, '77226437' /*Trespasser*/,
-  '328283190' /*Edge of Concurrence*/, '360554695' /*Dead Messenger*/,
-  '396432035' /*Cloudstrike*/, '461401987' /*Tessellation*/, '478622552' /*Duality*/,
-  '778561967' /*Tommy's Matchbook*/, '882572881' /*Ticuu's Divination*/,
-  '985132347' /*The Manticore*/, '1089205875' /*Edge of Intent*/,
-  '1392294260' /*Ruinous Effigy*/, '1642951312' /*Trinity Ghoul*/,
-  '1642951314' /*Lord of Wolves*/, '1642951315' /*Wavesplitter*/,
-  '1642951316' /*Prometheus Lens*/, '1642951317' /*Borealis*/,
-  '1642951318' /*Polaris Lance*/, '1642951319' /*Telesto*/,
-  '1657028064' /*Hard Light*/, '1657028066' /*Skyburner's Oath*/,
-  '1657028067' /*Riskrunner*/, '1657028068' /*Sunshot*/,
-  '1657028069' /*Graviton Lance*/, '1657028070' /*Coldheart*/,
-  '1657028071' /*Fighting Lion*/, '1657028078' /*Merciless*/,
-  '1977134032' /*Delicate Tomb*/, '1988948484' /*Divinity*/,
-  '2097871936' /*Dead Messenger*/,
-
   /*~~Heavy Weapons Start Here~~*/
   '-2074952689' /*Anarchy*/, '-2005466029' /*Salvation's Grip*/,
   '-1665358243' /*Winterbite*/, '-1452890704' /*Heir Apparent*/,
@@ -150,7 +148,7 @@ const exoticWeapons:string[] = [
 ];
 
 function calculateLoadouts(
-  itemHashes: string[],
+  collectionHashes: string[],
   activity: string,
   guardianClass: string,
   subclass: string,
@@ -158,7 +156,10 @@ function calculateLoadouts(
 ): LoadoutItems[] {
   let loadouts: LoadoutItems[] = [];
 
-  //
+  //using the defined constants, bin the collectionHashes into a elemental type object: filter based on Guardian class and subclass if applicable
+  //if activity chosen is
+  //return loadouts
+
 
   return loadouts;
 }
