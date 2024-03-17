@@ -1,14 +1,31 @@
-import React, { Fragment,useState,useEffect } from 'react';
+import React, { Fragment,useState,useEffect,SyntheticEvent } from 'react';
 import '../styles/LoadoutBuilder.css';
 import LoadoutDisplay from '../components/LoadoutDisplay';
 import { globalData } from '../global';
 import axios from 'axios';
 import Loading from '../components/Loading';
+import convertToSignedInt from '../components/UnsignedToSigned';
+import {useForm} from "react-hook-form";
+
+interface FormData {
+  Activity: string;
+  Class: string;
+  Subclass?: string;
+  Role?: string;
+};
 
 const LoadoutBuilder: React.FC = () => {
-  const [exoticArmor,setExoticArmor] = useState<any>([]);
-  const [exoticWeapon,setExoticWeapon] = useState<any>([]);
+  let defaultValues: FormData = {
+    Activity: 'Crucible',
+    Class: 'Titan',
+    Subclass:'',
+    Role:''};
+
+  const [exoticArmorResponse,setExoticArmorResponse] = useState<any>([]);
+  const [exoticWeaponResponse,setExoticWeaponResponse] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
+  const {register, watch, formState: {errors}, handleSubmit} = useForm<FormData>({defaultValues});
+  const [formStatus,setFormStatus] = useState<FormData>(defaultValues);
 
   let membershipType = localStorage.getItem("membershipType");
   let destinyMembershipId = localStorage.getItem("membershipId");
@@ -28,7 +45,7 @@ const LoadoutBuilder: React.FC = () => {
     axios
     .get(armorEndpoint, { headers })
     .then((response) => {
-      setExoticArmor(response.data);
+      setExoticArmorResponse(response.data);
     })
 
     .catch((error) => {
@@ -41,7 +58,7 @@ const LoadoutBuilder: React.FC = () => {
     axios
     .get(weaponEndpoint, { headers })
     .then((response) => {
-      setExoticWeapon(response.data);
+      setExoticWeaponResponse(response.data);
       setLoading(false);
     })
 
@@ -51,64 +68,123 @@ const LoadoutBuilder: React.FC = () => {
     });
   }, []);
 
-  let exoticArmorData:string = JSON.stringify(exoticArmor);
-  let exoticWeaponData:string = JSON.stringify(exoticWeapon);
-  console.log(exoticArmorData);
-  console.log(exoticWeaponData);
+  let exoticArmor:any[] = [];
+  let exoticWeapons:any[] = [];
 
+  if(exoticArmorResponse.hasOwnProperty('Response')&&exoticWeaponResponse.hasOwnProperty('Response'))
+  {
+    if(exoticArmorResponse.Response.hasOwnProperty('collectibles')&&exoticWeaponResponse.Response.hasOwnProperty('collectibles'))
+    {
+      if(exoticArmorResponse.Response.collectibles.hasOwnProperty('data')&&exoticWeaponResponse.Response.collectibles.hasOwnProperty('data'))
+      {
+        if(exoticArmorResponse.Response.collectibles.data.hasOwnProperty('collectibles')&&exoticWeaponResponse.Response.collectibles.data.hasOwnProperty('collectibles'))
+        {
+          exoticArmor = exoticArmorResponse.Response.collectibles.data.collectibles;
+          exoticWeapons = exoticWeaponResponse.Response.collectibles.data.collectibles;
+        }
+      }
+    }
+  }
+
+  //console.log(exoticArmor);
+  //console.log(exoticWeapons);
+
+  let itemHashes:string[] = [];
+
+  for(var key in exoticArmor)
+  {
+    if(exoticArmor[key].hasOwnProperty('state'))
+    {
+      if(!JSON.stringify(exoticArmor[key]).includes('1')) //1 means NotAcquired
+      {
+        itemHashes.push(convertToSignedInt(parseInt(key).toString()));
+      }
+    }
+  }
+
+  for(var key in exoticWeapons)
+  {
+    if(exoticWeapons[key].hasOwnProperty('state'))
+    {
+      if(!JSON.stringify(exoticWeapons[key]).includes('1')) //1 means NotAcquired
+      {
+        itemHashes.push(convertToSignedInt(parseInt((key)).toString()));
+      }
+    }
+  }
+
+  //console.log(itemHashes);
+  
+  //pass in each item hash to a function that will compute its associated 'points' object (taking into account the user-defined options in the formStatus variable)
+  //take the top 5 options returned
+  //query the manifest with their hashes
+  //display their icons in the loadoutDisplay
 
   if(isLoading)
   {
     return <Loading />
   }
 
+  const onSubmit = (data:FormData) => {setFormStatus(data);console.log(data)}
+
   return (
     <Fragment>
       <div className="leftside">
         <div className="form">
-        <form id="loadout-input" method="POST">
-          <label>Activity</label>
-          <br></br>
-          <select>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>Activity
+          <br />
+          <select {...register("Activity")}>
             <option value="Crucible">Crucible</option>
             <option value="Vanguard">Vanguard</option>
             <option value="Gambit">Gambit</option>
             <option value="Raid">Raid</option>
           </select>
+          </label>
           
-          <br></br>
-          <br></br>
+          <br />
+          <br />
 
-          <label>Class</label>
-          <br></br>
-          <select>
-            <option value="titan">Titan</option>
-            <option value="hunter">Hunter</option>
-            <option value="warlock">Warlock</option>
+          <label>Class
+          <br />
+          <select {...register("Class")}>
+            <option value="Titan">Titan</option>
+            <option value="Hunter">Hunter</option>
+            <option value="Warlock">Warlock</option>
           </select>
+          </label>
           
-          <br></br>
-          <br></br>
+          <br />
+          <br />
 
-          <label>Subclass (optional)</label>
-          <br></br>
-          <select>
-            <option value="arc">Arc</option>
-            <option value="void">Void</option>
-            <option value="solar">Solar</option>
-          </select>
+          <label>Subclass (optional)
+            <br />
+            <select {...register("Subclass")}>
+              <option value=""></option>
+              <option value="Arc">Arc</option>
+              <option value="Void">Void</option>
+              <option value="Solar">Solar</option>
+            </select>
+          </label>
           
-          <br></br>
-          <br></br>
+          <br />
+          <br />
 
-          <label>Role (optional)</label>
-          <br></br>
-          <select>
+          <label>Role (Gambit Only)
+          <br />
+          <select {...register("Role")}>
+            <option value=""></option>
             <option value="Invader">Invader</option>
             <option value="Collector">Collector</option>
             <option value="Sentry">Sentry</option>
             <option value="Reaper">Reaper</option>
           </select>
+          </label>
+
+          <br />
+          <br />
+
+          <button type="submit" value="submit">Build My Loadout</button>
         </form>
         </div>
       </div>

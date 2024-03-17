@@ -4,22 +4,20 @@ import '../styles/Vault.css'
 import imagePath from "../assets/Images/alt.jpg";
 
 interface VaultProps{
-    rows:string[][];
+    rows:string[];
+    size: number;
 }
 
-const VaultDisplay = ({rows}:VaultProps) => 
+const VaultDisplay = ({rows,size}:VaultProps) => 
 {
-    return(
-        <Fragment>
-                <tbody>
-                    {rows.map((row) => (
-                        <tr>
-                            {row.map((index) => <td><Thumbnail src={index} fallback={imagePath}></Thumbnail></td>)}
-                        </tr>
-                        ))}
-                </tbody>
-        </Fragment>
-    );
+    const rowData = [];
+    
+    for(let i = 0; i < rows.length; i+=size)
+    {
+        rowData.push(<tr>{rows.slice(i, i+size).map((index)=> <td><Thumbnail src={index} fallback={imagePath}></Thumbnail></td>)}</tr>); //TODO assign key to each <td>
+    }
+
+    return <tbody>{rowData}</tbody>;
 }
   
 export default VaultDisplay;
