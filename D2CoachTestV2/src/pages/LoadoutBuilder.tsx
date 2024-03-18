@@ -167,6 +167,8 @@ const LoadoutBuilder: React.FC = () => {
               <option value="Arc">Arc</option>
               <option value="Void">Void</option>
               <option value="Solar">Solar</option>
+              <option value="Stasis">Stasis</option>
+              <option value="Strand">Strand</option>
             </select>
           </label>
           

@@ -2,9 +2,16 @@ export interface LoadoutItems {
   weaponitemHash: string;
   armorItemHash: string;
   subclass: string;
+  subclassIconPath: string;
   //pve: number;
   //pvp: number;
 }
+
+const solarIco:string = "https://bungie.net/common/destiny2_content/icons/DestinyDamageTypeDefinition_2a1773e10968f2d088b97c22b22bba9e.png";
+const voidIco:string = "https://bungie.net/common/destiny2_content/icons/DestinyDamageTypeDefinition_ceb2f6197dccf3958bb31cc783eb97a0.png";
+const arcIco:string = "https://bungie.net/common/destiny2_content/icons/DestinyDamageTypeDefinition_092d066688b879c807c3b460afdd61e6.png";
+const strandIco:string = "https://bungie.net/common/destiny2_content/icons/DestinyDamageTypeDefinition_b2fe51a94f3533f97079dfa0d27a4096.png";
+const stasisIco:string = "https://bungie.net/common/destiny2_content/icons/DestinyDamageTypeDefinition_530c4c3e7981dc2aefd24fd3293482bf.png";
 
 type elementalTypes = {
     neutral:string[]; //neutral refers to exotic armor that is subclass agnostic, and kinetic weapons
@@ -145,12 +152,16 @@ function calculateLoadouts(
 
     //using the defined constants, bin the collectionHashes into a elemental type object: filter based on Guardian class and subclass if applicable
     let playerArmor:elementalTypes = {neutral:[], stasis:[], strand:[], solar:[], void:[], arc:[]};
-    let playerWeapons:elementalTypes = {neutral:[], stasis:[], strand:[], solar:[], void:[], arc:[]};
+    let playerPrimaryWeapons:elementalTypes = {neutral:[], stasis:[], strand:[], solar:[], void:[], arc:[]};
+    let playerSpecialWeapons:elementalTypes = {neutral:[], stasis:[], strand:[], solar:[], void:[], arc:[]};
+    let playerHeavyWeapons:elementalTypes = {neutral:[], stasis:[], strand:[], solar:[], void:[], arc:[]};
     
     for(var collectionHash in collectionHashes)
     {
         //search weapons & armor
-        playerWeapons = searchExoticWeapons(collectionHashes[collectionHash], playerWeapons);
+        playerPrimaryWeapons = searchExoticWeapons(collectionHashes[collectionHash], playerPrimaryWeapons);
+        playerSpecialWeapons = searchExoticWeapons(collectionHashes[collectionHash], playerSpecialWeapons);
+        playerHeavyWeapons = searchExoticWeapons(collectionHashes[collectionHash], playerHeavyWeapons);
         playerArmor = searchGuardianClass(guardianClass, collectionHashes[collectionHash], playerArmor);
     }
 
@@ -160,9 +171,199 @@ function calculateLoadouts(
   //if activity chosen is vanguard ==> (3) subclass exotic amor, (2) neutral game armor, (3) subclass weapons, (2) neutral weapons
   //                        crucible ==>  (1) subclass exotic amor, (4) neutral game armor, (0) subclass weapons, (5) neutral weapons
   //                        gambit ==>  (4) subclass exotic amor, (1) neutral game armor, (4) subclass weapons, (1) neutral weapons
-  //                        raid ==>  (4) subclass exotic amor, (1) neutral game armor, (1) subclass weapons, (1) neutral weapons
+  //                        raid ==>  (5) subclass exotic amor, (0) neutral game armor, (5) subclass weapons, (0) neutral weapons
 
+    loadouts = initializeSubclasses(subclass, loadouts);
 
+    for(var loadout in loadouts)
+    {
+        if(activity.includes('Vanguard'))
+        {
+            if(loadouts[loadout].subclass.includes('Void'))
+            {
+                if(playerPrimaryWeapons.void.length > 0 && playerArmor.void.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.void[Math.floor(Math.random() * playerArmor.void.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.void[Math.floor(Math.random() * playerArmor.void.length)];
+                }
+                else
+                {
+                    //I have included this else definition because any player that doesn't have many exotics is USUALLY guaranteed to have
+                    //at least one exotic arc primary weapon - the Riskrunner
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Arc'))
+            {
+                if(playerPrimaryWeapons.arc.length > 0 && playerArmor.arc.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Solar'))
+            {
+                if(playerPrimaryWeapons.solar.length > 0 && playerArmor.solar.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Stasis'))
+            {
+                if(playerPrimaryWeapons.stasis.length > 0 && playerArmor.stasis.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Strand'))
+            {
+                if(playerPrimaryWeapons.strand.length > 0 && playerArmor.strand.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.strand[Math.floor(Math.random() * playerArmor.strand.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.strand[Math.floor(Math.random() * playerArmor.strand.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+        }
+        else if(activity.includes('Crucible'))
+        {
+            if(loadouts[loadout].subclass.includes('Void'))
+            {
+
+            }
+            else if(loadouts[loadout].subclass.includes('Arc'))
+            {
+
+            }
+            else if(loadouts[loadout].subclass.includes('Solar'))
+            {
+                
+            }
+            else if(loadouts[loadout].subclass.includes('Stasis'))
+            {
+
+            }
+            else if(loadouts[loadout].subclass.includes('Strand'))
+            {
+
+            }
+        }
+        else if(activity.includes('Gambit'))
+        {
+            if(loadouts[loadout].subclass.includes('Void'))
+            {
+
+            }
+            else if(loadouts[loadout].subclass.includes('Arc'))
+            {
+
+            }
+            else if(loadouts[loadout].subclass.includes('Solar'))
+            {
+                
+            }
+            else if(loadouts[loadout].subclass.includes('Stasis'))
+            {
+
+            }
+            else if(loadouts[loadout].subclass.includes('Strand'))
+            {
+
+            }
+        }
+        else
+        {
+            //activity is raid
+            if(loadouts[loadout].subclass.includes('Void'))
+            {
+                if(playerHeavyWeapons.void.length > 0 && playerArmor.void.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.void[Math.floor(Math.random() * playerArmor.void.length)];
+                    loadouts[loadout].weaponitemHash = playerHeavyWeapons.void[Math.floor(Math.random() * playerArmor.void.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Arc'))
+            {
+                if(playerHeavyWeapons.arc.length > 0 && playerArmor.arc.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].weaponitemHash = playerHeavyWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Solar'))
+            {
+                if(playerHeavyWeapons.solar.length > 0 && playerArmor.solar.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                    loadouts[loadout].weaponitemHash = playerHeavyWeapons.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Stasis'))
+            {
+                if(playerHeavyWeapons.stasis.length > 0 && playerArmor.stasis.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
+                    loadouts[loadout].weaponitemHash = playerHeavyWeapons.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+            else if(loadouts[loadout].subclass.includes('Strand'))
+            {
+                //there are currently no exotic strand heavies so I'm changing this to solar
+                if(playerHeavyWeapons.solar.length > 0 && playerArmor.solar.length > 0)
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                    loadouts[loadout].weaponitemHash = playerHeavyWeapons.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                }
+                else
+                {
+                    loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                }
+            }
+        }
+    }
 
   //return loadouts
 
@@ -170,6 +371,71 @@ function calculateLoadouts(
 }
 
 //ugly branching below, venture ahead at your own risk
+
+function initializeSubclasses(subclass:string, loadouts: LoadoutItems[]):LoadoutItems[]
+{
+    //initialize all loadouts with this subclass
+    if(subclass.includes('Void'))
+    {
+            for(let i:number = 0; i < 5; i++)
+            {   
+                loadouts[i].subclass = 'Void';
+                loadouts[i].subclassIconPath = voidIco;
+            }
+            return loadouts;
+    }
+    else if(subclass.includes('Arc'))
+    {
+            for(let i:number = 0; i < 5; i++)
+            {   
+                loadouts[i].subclass = 'Arc';
+                loadouts[i].subclassIconPath = arcIco;
+            }
+            return loadouts;
+    }
+    else if(subclass.includes('Solar'))
+    {
+            for(let i:number = 0; i < 5; i++)
+            {   
+                loadouts[i].subclass = 'Solar';
+                loadouts[i].subclassIconPath = solarIco;
+            }
+            return loadouts;
+    }
+    else if(subclass.includes('Stasis'))
+    {
+            for(let i:number = 0; i < 5; i++)
+            {   
+                loadouts[i].subclass = 'Stasis';
+                loadouts[i].subclassIconPath = stasisIco;
+            }  
+            return loadouts;
+    }
+    else if(subclass.includes('Strand'))
+    {
+            for(let i:number = 0; i < 5; i++)
+            {   
+                loadouts[i].subclass = 'Strand';
+                loadouts[i].subclassIconPath = strandIco;
+            }
+            return loadouts;
+    }
+    else
+    {
+        //initialize loadouts with one subclass each
+        loadouts[0].subclass = 'Void';
+        loadouts[0].subclassIconPath = voidIco;
+        loadouts[1].subclass = 'Arc';
+        loadouts[1].subclassIconPath = arcIco;
+        loadouts[2].subclass = 'Solar';
+        loadouts[2].subclassIconPath = solarIco;
+        loadouts[3].subclass = 'Stasis';
+        loadouts[3].subclassIconPath = stasisIco;
+        loadouts[4].subclass = 'Strand';
+        loadouts[4].subclassIconPath = strandIco;
+        return loadouts;
+    }
+}
 
 function searchExoticWeapons(collectionHash:string, playerWeapons:elementalTypes):elementalTypes
 {
