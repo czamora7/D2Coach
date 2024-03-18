@@ -395,7 +395,7 @@ function calculateLoadouts(
                 //there are currently no exotic strand heavies so I'm changing this to solar
                 if(playerHeavyWeapons.solar.length > 0 && playerArmor.solar.length > 0)
                 {
-                    loadouts[loadout].armorItemHash = playerArmor.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                    loadouts[loadout].armorItemHash = playerArmor.strand[Math.floor(Math.random() * playerArmor.strand.length)];
                     loadouts[loadout].weaponitemHash = playerHeavyWeapons.solar[Math.floor(Math.random() * playerArmor.solar.length)];
                 }
                 else
