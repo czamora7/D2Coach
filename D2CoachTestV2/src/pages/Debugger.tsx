@@ -2,7 +2,7 @@ import React from 'react';
 
 // import getManifest from './apiRequests/getDestinyManifest';
 // import getCurrentUser from '../apiRequests/getUserProfile'; 
-// import getAccInfo from '../apiRequests/getNeededAccData';
+import getAccInfo from '../apiRequests/getNeededAccData';
 import Thumbnail from '../components/Thumbnail';
 // import { globalData } from '../global';
 // import getInventory from '../apiRequests/getInventory';
@@ -12,7 +12,7 @@ import convertToSignedInt from '../components/UnsignedToSigned';
 const Debugger: React.FC = () => {
 
  // getManifest();
- // getAccInfo();
+ getAccInfo();
   // console.log(globalData.D2ClassList);
   // console.log(globalData.inventory);
  // console.log("Debugger check... authCode: " + localStorage.getItem("authCode") + " Token: " + localStorage.getItem("userToken"));
