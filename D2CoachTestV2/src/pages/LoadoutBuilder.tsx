@@ -7,6 +7,7 @@ import Loading from '../components/Loading';
 import convertToSignedInt from '../components/UnsignedToSigned';
 import {useForm} from "react-hook-form";
 import {LoadoutItems, calculateLoadouts} from '../components/CalculateLoadouts';
+import destinyCollectibles from '../assets/Manifest/DestinyCollectibleDefinition.json';
 
 
 interface FormData {
@@ -29,6 +30,7 @@ const LoadoutBuilder: React.FC = () => {
   const {register, watch, formState: {errors}, handleSubmit} = useForm<FormData>({defaultValues}); //see https://react-hook-form.com/docs/useform/watch for details on these constants
   const [formStatus,setFormStatus] = useState<FormData>(defaultValues);
 
+  let destinyCollectibleDefinition:any = destinyCollectibles;
   let membershipType = localStorage.getItem("membershipType");
   let destinyMembershipId = localStorage.getItem("membershipId");
   let characterId = localStorage.getItem("character0");
@@ -91,7 +93,7 @@ const LoadoutBuilder: React.FC = () => {
   //console.log(exoticArmor);
   //console.log(exoticWeapons);
 
-  let itemHashes:string[] = [];
+  let collectibleHashes:string[] = [];
 
   for(var key in exoticArmor)
   {
@@ -99,7 +101,7 @@ const LoadoutBuilder: React.FC = () => {
     {
       if(!JSON.stringify(exoticArmor[key]).includes('1')) //1 means NotAcquired
       {
-        itemHashes.push(convertToSignedInt(parseInt(key).toString()));
+        collectibleHashes.push(convertToSignedInt(parseInt(key).toString()));
       }
     }
   }
@@ -110,16 +112,69 @@ const LoadoutBuilder: React.FC = () => {
     {
       if(!JSON.stringify(exoticWeapons[key]).includes('1')) //1 means NotAcquired
       {
-        itemHashes.push(convertToSignedInt(parseInt((key)).toString()));
+        collectibleHashes.push(convertToSignedInt(parseInt((key)).toString()));
       }
     }
   }
 
   //console.log(itemHashes);
   
-  //pass in each item hash to a function that will compute its associated 'points' object (taking into account the user-defined options in the formStatus variable)
-  let loadoutItems = calculateLoadouts(itemHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
-  //take the top 5 options returned
+  let loadouts = calculateLoadouts(collectibleHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
+
+  console.log(loadouts);
+
+  let weaponCollectibleData:any[] = [];
+  let armorCollectibleData:any[] = [];
+  let exoticArmorIcons:string[] = [];
+  let exoticWeaponsIcons:string[] = [];
+
+  for(var index in loadouts)
+  {
+    let armorCollectibleHash:string = loadouts[index].armorItemHash;
+    let weaponCollectibleHash:string = loadouts[index].weaponitemHash;
+
+    for(var key in destinyCollectibleDefinition)
+    {
+      if(destinyCollectibleDefinition[key].hasOwnProperty('id')&&destinyCollectibleDefinition[key].hasOwnProperty('json'))
+      {
+        if(JSON.stringify(destinyCollectibleDefinition[key].id).includes(weaponCollectibleHash))
+        {
+          weaponCollectibleData.push(JSON.parse(destinyCollectibleDefinition[key].json));
+        }
+
+        if(JSON.stringify(destinyCollectibleDefinition[key].id).includes(armorCollectibleHash))
+        {
+          armorCollectibleData.push(JSON.parse(destinyCollectibleDefinition[key].json));
+        }
+      }
+    }
+  }
+
+  for(var key in weaponCollectibleData)
+  {
+    if(weaponCollectibleData[key].hasOwnProperty('displayProperties'))
+    {
+      if(weaponCollectibleData[key].displayProperties.hasOwnProperty('icon'))
+      {
+        exoticWeaponsIcons.push("https://www.bungie.net" + weaponCollectibleData[key].displayProperties.icon);
+      }
+    }
+  }
+
+  for(var key in armorCollectibleData)
+  {
+    if(armorCollectibleData[key].hasOwnProperty('displayProperties'))
+    {
+      if(armorCollectibleData[key].displayProperties.hasOwnProperty('icon'))
+      {
+        exoticArmorIcons.push("https://www.bungie.net" + armorCollectibleData[key].displayProperties.icon);
+      }
+    }
+  }
+
+  console.log(exoticArmorIcons);
+  console.log(exoticWeaponsIcons);
+
   //query the manifest with their hashes
   //display their icons in the loadoutDisplay
 
@@ -128,7 +183,7 @@ const LoadoutBuilder: React.FC = () => {
     return <Loading />
   }
 
-  const onSubmit = (data:FormData) => {setFormStatus(data);console.log(data)}
+  const onSubmit = (data:FormData) => {setFormStatus(data);}
 
   return (
     <Fragment>
@@ -167,6 +222,8 @@ const LoadoutBuilder: React.FC = () => {
               <option value="Arc">Arc</option>
               <option value="Void">Void</option>
               <option value="Solar">Solar</option>
+              <option value="Stasis">Stasis</option>
+              <option value="Strand">Strand</option>
             </select>
           </label>
           
@@ -195,11 +252,11 @@ const LoadoutBuilder: React.FC = () => {
       <div className="rightside">
         <h2>Loadouts</h2>
         <div className="loadoutDisplays">
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[0].subclassIconPath} exoticArmor={exoticArmorIcons[0]} exoticWeapon={exoticWeaponsIcons[0]}></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[1].subclassIconPath} exoticArmor={exoticArmorIcons[1]} exoticWeapon={exoticWeaponsIcons[1]}></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[2].subclassIconPath} exoticArmor={exoticArmorIcons[2]} exoticWeapon={exoticWeaponsIcons[2]}></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[3].subclassIconPath} exoticArmor={exoticArmorIcons[3]} exoticWeapon={exoticWeaponsIcons[3]}></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[4].subclassIconPath} exoticArmor={exoticArmorIcons[4]} exoticWeapon={exoticWeaponsIcons[4]}></LoadoutDisplay>
         </div>
       </div>
     </Fragment>
