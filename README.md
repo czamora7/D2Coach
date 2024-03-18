@@ -17,7 +17,7 @@ D2Coach \
 &nbsp &nbsp &nbsp &nbsp  |_ devlogs \
 | \
 |_ D2CoachTestV2 \
-&nbsp &nbsp &nbsp &nbsp  |_ public \
+nbsp nbsp nbsp nbsp  |_ public \
 &nbsp &nbsp &nbsp &nbsp  |_ src \
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ pages \
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ components \
