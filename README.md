@@ -14,10 +14,10 @@ How to obtain the source code: //TODO
 Directory Structure: \
 D2Coach \
 |_ Archive \
-&nbsp &nbsp &nbsp &nbsp  |_ devlogs \
+&emsp;|_ devlogs \
 | \
 |_ D2CoachTestV2 \
-nbsp nbsp nbsp nbsp  |_ public \
+&emsp;  |_ public \
 &nbsp &nbsp &nbsp &nbsp  |_ src \
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ pages \
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ components \
