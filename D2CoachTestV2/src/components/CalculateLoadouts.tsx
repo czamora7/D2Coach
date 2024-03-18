@@ -184,14 +184,14 @@ function calculateLoadouts(
                 if(playerPrimaryWeapons.void.length > 0 && playerArmor.void.length > 0)
                 {
                     loadouts[loadout].armorItemHash = playerArmor.void[Math.floor(Math.random() * playerArmor.void.length)];
-                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.void[Math.floor(Math.random() * playerArmor.void.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.void[Math.floor(Math.random() * playerPrimaryWeapons.void.length)];
                 }
                 else
                 {
                     //I have included this else definition because any player that doesn't have many exotics is USUALLY guaranteed to have
                     //at least one exotic arc primary weapon - the Riskrunner
                     loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
-                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerPrimaryWeapons.arc.length)];
                 }
             }
             else if(loadouts[loadout].subclass.includes('Arc'))
@@ -199,12 +199,12 @@ function calculateLoadouts(
                 if(playerPrimaryWeapons.arc.length > 0 && playerArmor.arc.length > 0)
                 {
                     loadouts[loadout].armorItemHash = playerArmor.arc[Math.floor(Math.random() * playerArmor.arc.length)];
-                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerPrimaryWeapons.arc.length)];
                 }
                 else
                 {
                     loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
-                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerPrimaryWeapons.arc.length)];
                 }
             }
             else if(loadouts[loadout].subclass.includes('Solar'))
@@ -212,12 +212,12 @@ function calculateLoadouts(
                 if(playerPrimaryWeapons.solar.length > 0 && playerArmor.solar.length > 0)
                 {
                     loadouts[loadout].armorItemHash = playerArmor.solar[Math.floor(Math.random() * playerArmor.solar.length)];
-                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.solar[Math.floor(Math.random() * playerPrimaryWeapons.solar.length)];
                 }
                 else
                 {
                     loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
-                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerPrimaryWeapons.arc.length)];
                 }
             }
             else if(loadouts[loadout].subclass.includes('Stasis'))
@@ -225,12 +225,12 @@ function calculateLoadouts(
                 if(playerPrimaryWeapons.stasis.length > 0 && playerArmor.stasis.length > 0)
                 {
                     loadouts[loadout].armorItemHash = playerArmor.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
-                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.stasis[Math.floor(Math.random() * playerPrimaryWeapons.stasis.length)];
                 }
                 else
                 {
                     loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
-                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerPrimaryWeapons.arc.length)];
                 }
             }
             else if(loadouts[loadout].subclass.includes('Strand'))
@@ -238,59 +238,101 @@ function calculateLoadouts(
                 if(playerPrimaryWeapons.strand.length > 0 && playerArmor.strand.length > 0)
                 {
                     loadouts[loadout].armorItemHash = playerArmor.strand[Math.floor(Math.random() * playerArmor.strand.length)];
-                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.strand[Math.floor(Math.random() * playerArmor.strand.length)];
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.strand[Math.floor(Math.random() * playerPrimaryWeapons.strand.length)];
                 }
                 else
                 {
                     loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
-                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+                    loadouts[loadout].armorItemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerPrimaryWeapons.arc.length)];
                 }
             }
         }
         else if(activity.includes('Crucible'))
         {
-            if(loadouts[loadout].subclass.includes('Void'))
+            if(playerPrimaryWeapons.neutral.length > 0)
             {
-
+                loadouts[loadout].weaponitemHash = playerPrimaryWeapons.neutral[Math.floor(Math.random() * playerPrimaryWeapons.neutral.length)];
             }
-            else if(loadouts[loadout].subclass.includes('Arc'))
+            else
             {
-
+                loadouts[loadout].weaponitemHash = playerPrimaryWeapons.arc[Math.floor(Math.random() * playerPrimaryWeapons.arc.length)];
             }
-            else if(loadouts[loadout].subclass.includes('Solar'))
-            {
-                
-            }
-            else if(loadouts[loadout].subclass.includes('Stasis'))
-            {
 
-            }
-            else if(loadouts[loadout].subclass.includes('Strand'))
+            if(loadouts[loadout].subclass.includes('Void')&&playerArmor.void.length>0)
             {
-
+                loadouts[loadout].armorItemHash = playerArmor.void[Math.floor(Math.random() * playerArmor.void.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Arc')&&playerArmor.arc.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Solar')&&playerArmor.solar.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Stasis')&&playerArmor.stasis.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Strand')&&playerArmor.strand.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.strand[Math.floor(Math.random() * playerArmor.strand.length)];
+            }
+            else
+            {
+                loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
             }
         }
         else if(activity.includes('Gambit'))
         {
-            if(loadouts[loadout].subclass.includes('Void'))
+            if(role!='')
             {
-
+                if(role.includes('Sentry')&&playerPrimaryWeapons.neutral.includes('1660030045')) //Malfeasance
+                {
+                    loadouts[loadout].weaponitemHash = '1660030045';
+                }
+                else if(role.includes('Reaper')&&playerPrimaryWeapons.neutral.length>0)//exotic primary
+                {
+                    loadouts[loadout].weaponitemHash = playerPrimaryWeapons.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
+                }
+                else if(role.includes('Invader')&&playerHeavyWeapons.solar.includes('1258579677'))
+                //Xenophage
+                {
+                    loadouts[loadout].weaponitemHash = '1258579677';
+                }
+                else if(role.includes('Collector')&&playerPrimaryWeapons.neutral.includes('1660030045')) //also malfeasance
+                {
+                    loadouts[loadout].weaponitemHash = '1660030045';
+                }
             }
-            else if(loadouts[loadout].subclass.includes('Arc'))
+            else
             {
-
+                loadouts[loadout].weaponitemHash = playerPrimaryWeapons.neutral[Math.floor(Math.random() * playerPrimaryWeapons.neutral.length)];
             }
-            else if(loadouts[loadout].subclass.includes('Solar'))
-            {
-                
-            }
-            else if(loadouts[loadout].subclass.includes('Stasis'))
-            {
 
-            }
-            else if(loadouts[loadout].subclass.includes('Strand'))
+            if(loadouts[loadout].subclass.includes('Void')&&playerArmor.void.length>0)
             {
-
+                loadouts[loadout].armorItemHash = playerArmor.void[Math.floor(Math.random() * playerArmor.void.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Arc')&&playerArmor.arc.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.arc[Math.floor(Math.random() * playerArmor.arc.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Solar')&&playerArmor.solar.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.solar[Math.floor(Math.random() * playerArmor.solar.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Stasis')&&playerArmor.stasis.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.stasis[Math.floor(Math.random() * playerArmor.stasis.length)];
+            }
+            else if(loadouts[loadout].subclass.includes('Strand')&&playerArmor.strand.length>0)
+            {
+                loadouts[loadout].armorItemHash = playerArmor.strand[Math.floor(Math.random() * playerArmor.strand.length)];
+            }
+            else
+            {
+                loadouts[loadout].armorItemHash = playerArmor.neutral[Math.floor(Math.random() * playerArmor.neutral.length)];
             }
         }
         else
