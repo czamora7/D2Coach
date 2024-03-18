@@ -150,9 +150,12 @@ function calculateLoadouts(
     for(var collectionHash in collectionHashes)
     {
         //search weapons & armor
-        playerWeapons = searchExoticWeapons(collectionHash, playerWeapons);
-        playerArmor = searchGuardianClass(guardianClass, collectionHash, playerArmor);
+        playerWeapons = searchExoticWeapons(collectionHashes[collectionHash], playerWeapons);
+        playerArmor = searchGuardianClass(guardianClass, collectionHashes[collectionHash], playerArmor);
     }
+
+    /*console.log(playerWeapons);
+    console.log(playerArmor);*/
   
   //if activity chosen is vanguard ==> (3) subclass exotic amor, (2) neutral game armor, (3) subclass weapons, (2) neutral weapons
   //                        crucible ==>  (1) subclass exotic amor, (4) neutral game armor, (0) subclass weapons, (5) neutral weapons
