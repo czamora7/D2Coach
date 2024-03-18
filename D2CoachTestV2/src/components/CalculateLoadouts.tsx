@@ -421,8 +421,7 @@ function initializeSubclasses(subclass:string, loadouts: LoadoutItems[]):Loadout
     {
             for(let i:number = 0; i < 5; i++)
             {   
-                loadouts[i].subclass = 'Void';
-                loadouts[i].subclassIconPath = voidIco;
+                loadouts[i] = {subclass:'Void',subclassIconPath:voidIco,weaponitemHash:"",armorItemHash:""};
             }
             return loadouts;
     }
@@ -430,8 +429,7 @@ function initializeSubclasses(subclass:string, loadouts: LoadoutItems[]):Loadout
     {
             for(let i:number = 0; i < 5; i++)
             {   
-                loadouts[i].subclass = 'Arc';
-                loadouts[i].subclassIconPath = arcIco;
+                loadouts[i] = {subclass:'Arc',subclassIconPath:arcIco,weaponitemHash:"",armorItemHash:""};
             }
             return loadouts;
     }
@@ -439,8 +437,7 @@ function initializeSubclasses(subclass:string, loadouts: LoadoutItems[]):Loadout
     {
             for(let i:number = 0; i < 5; i++)
             {   
-                loadouts[i].subclass = 'Solar';
-                loadouts[i].subclassIconPath = solarIco;
+                loadouts[i] = {subclass:'Solar',subclassIconPath:solarIco,weaponitemHash:"",armorItemHash:""};
             }
             return loadouts;
     }
@@ -448,8 +445,7 @@ function initializeSubclasses(subclass:string, loadouts: LoadoutItems[]):Loadout
     {
             for(let i:number = 0; i < 5; i++)
             {   
-                loadouts[i].subclass = 'Stasis';
-                loadouts[i].subclassIconPath = stasisIco;
+                loadouts[i] = {subclass:'Stasis',subclassIconPath:stasisIco,weaponitemHash:"",armorItemHash:""};
             }  
             return loadouts;
     }
@@ -457,24 +453,19 @@ function initializeSubclasses(subclass:string, loadouts: LoadoutItems[]):Loadout
     {
             for(let i:number = 0; i < 5; i++)
             {   
-                loadouts[i].subclass = 'Strand';
-                loadouts[i].subclassIconPath = strandIco;
+                loadouts[i] = {subclass:'Strand',subclassIconPath:strandIco,weaponitemHash:"",armorItemHash:""};
             }
             return loadouts;
     }
     else
     {
         //initialize loadouts with one subclass each
-        loadouts[0].subclass = 'Void';
-        loadouts[0].subclassIconPath = voidIco;
-        loadouts[1].subclass = 'Arc';
-        loadouts[1].subclassIconPath = arcIco;
-        loadouts[2].subclass = 'Solar';
-        loadouts[2].subclassIconPath = solarIco;
-        loadouts[3].subclass = 'Stasis';
-        loadouts[3].subclassIconPath = stasisIco;
-        loadouts[4].subclass = 'Strand';
-        loadouts[4].subclassIconPath = strandIco;
+        loadouts[0] = {subclass:'Void',subclassIconPath:voidIco,weaponitemHash:"",armorItemHash:""};
+        loadouts[1] = {subclass:'Arc',subclassIconPath:arcIco,weaponitemHash:"",armorItemHash:""};
+        loadouts[2] = {subclass:'Solar',subclassIconPath:solarIco,weaponitemHash:"",armorItemHash:""};
+        loadouts[3] = {subclass:'Stasis',subclassIconPath:stasisIco,weaponitemHash:"",armorItemHash:""};
+        loadouts[4] = {subclass:'Strand',subclassIconPath:strandIco,weaponitemHash:"",armorItemHash:""};
+
         return loadouts;
     }
 }

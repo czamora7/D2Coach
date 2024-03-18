@@ -117,9 +117,9 @@ const LoadoutBuilder: React.FC = () => {
 
   //console.log(itemHashes);
   
-  //pass in each item hash to a function that will compute its associated 'points' object (taking into account the user-defined options in the formStatus variable)
-  let loadoutItems = calculateLoadouts(collectibleHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
-  //take the top 5 options returned
+  let loadouts = calculateLoadouts(collectibleHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
+  console.log(loadouts);
+
   //query the manifest with their hashes
   //display their icons in the loadoutDisplay
 
@@ -197,11 +197,11 @@ const LoadoutBuilder: React.FC = () => {
       <div className="rightside">
         <h2>Loadouts</h2>
         <div className="loadoutDisplays">
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
-          <LoadoutDisplay subclass="todo" exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[0].subclassIconPath} exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[1].subclassIconPath} exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[2].subclassIconPath} exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[3].subclassIconPath} exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
+          <LoadoutDisplay subclass={loadouts[4].subclassIconPath} exoticArmor="todo" exoticWeapon="todo"></LoadoutDisplay>
         </div>
       </div>
     </Fragment>
