@@ -6,19 +6,13 @@ export interface LoadoutItems {
   //pvp: number;
 }
 
-interface elementalTypes {
+type elementalTypes = {
     neutral:string[]; //neutral refers to exotic armor that is subclass agnostic, and kinetic weapons
     stasis: string[];
     strand: string[];
     arc:string[];
     void:string[];
     solar:string[];
-}
-
-interface weaponElement {
-    primary:elementalTypes;
-    special:elementalTypes;
-    heavy:elementalTypes;
 }
 
 /*hashes for class glaives:'1089205875' Edge of Intent,'-484684054' Edge of Action,'328283190' Edge of Concurrence, 
@@ -122,30 +116,23 @@ const specialArc:string[] = ['-1976105140' /*The Fourth Horseman*/, '-1919623431
 //only fixing the overall structure of the algorithm will remedy this problem
 
 const heavyNeutral:string[] = [];
-const heavyStasis:string[] = [];
+const heavyStasis:string[] = ['-2005466029' /*Salvation's Grip*/,
+                            '-1665358243' /*Winterbite*/,];
 const heavyStrand:string[] = [];
-const heavySolar:string[] = [];
-const heavyVoid:string[] = [];
-const heavyArc:string[] = [];
+const heavySolar:string[] = ['-1275747007' /*Dragon's Breath*/,  '-419159713' /*Whisper of the Worm*/, '-359112991' /*The Lament*/,
+                                '-267747328' /*Gjallarhorn*/, '-266348207' /*Parasite*/,  '199171385' /*One Thousand Voices*/, '199171386' /*Sleeper Simulant*/,
+                                '1258579677' /*Xenophage*/, '753200559' /*Eyes of Tomorrow*/, ];
+const heavyVoid:string[] = ['-742112283' /*Leviathan's Breath*/,   '-68533123' /*Deterministic Chaos*/,
+                            '199171383' /*Black Talon*/, '199171384' /*Two-Tailed Fox*/,'199171388' /*The Colony*/,
+                            '467760883' /*Heartshadow*/,'1763840761' /*Truth*/,
+                            '2094776121' /*Tractor Cannon*/,'888224289' /*Deathbringer*/,];
+const heavyArc:string[] = ['-2074952689' /*Anarchy*/,  '-1452890704' /*Heir Apparent*/, '-1045578185' /*Thunderlord*/,
+                            '-599371397' /*D.A.R.C.I.*/, '199171382' /*The Queenbreaker*/,  '199171387' /*Worldline Zero*/, 
+                            '199171389' /*Legend of Acrius*/, '199171390' /*The Wardcliff Coil*/, '199171391' /*The Prospector*/, '1256729926' /*Grand Overture*/, ];
 
-const exoticWeapons:string[] = [
-  /*~~Heavy Weapons Start Here~~*/
-  '-2074952689' /*Anarchy*/, '-2005466029' /*Salvation's Grip*/,
-  '-1665358243' /*Winterbite*/, '-1452890704' /*Heir Apparent*/,
-  '-1275747007' /*Dragon's Breath*/, '-1045578185' /*Thunderlord*/,
-  '-742112283' /*Leviathan's Breath*/, '-599371397' /*D.A.R.C.I.*/,
-  '-419159713' /*Whisper of the Worm*/, '-359112991' /*The Lament*/,
-  '-267747328' /*Gjallarhorn*/, '-266348207' /*Parasite*/,
-  '-68533123' /*Deterministic Chaos*/, '199171382' /*The Queenbreaker*/,
-  '199171383' /*Black Talon*/, '199171384' /*Two-Tailed Fox*/,
-  '199171385' /*One Thousand Voices*/, '199171386' /*Sleeper Simulant*/,
-  '199171387' /*Worldline Zero*/, '199171388' /*The Colony*/,
-  '199171389' /*Legend of Acrius*/, '199171390' /*The Wardcliff Coil*/,
-  '199171391' /*The Prospector*/, '467760883' /*Heartshadow*/,
-  '753200559' /*Eyes of Tomorrow*/, '888224289' /*Deathbringer*/,
-  '1256729926' /*Grand Overture*/, '1258579677' /*Xenophage*/, '1763840761' /*Truth*/,
-  '2094776121' /*Tractor Cannon*/,
-];
+const primaryExotics:elementalTypes = {neutral:primaryNeutral, stasis:primaryStasis, strand:primaryStrand, void:primaryVoid, arc:primaryArc, solar:primarySolar};
+const specialExotics:elementalTypes = {neutral:specialNeutral, stasis:specialStasis, strand:specialStrand, void:specialVoid, arc:specialArc, solar:specialSolar};
+const heavyExotics:elementalTypes = {neutral:heavyNeutral, stasis:heavyStasis, strand:heavyStrand, void:heavyVoid, arc:heavyArc, solar:heavySolar};
 
 function calculateLoadouts(
   collectionHashes: string[],
@@ -154,14 +141,210 @@ function calculateLoadouts(
   subclass: string,
   role: string
 ): LoadoutItems[] {
-  let loadouts: LoadoutItems[] = [];
+    let loadouts: LoadoutItems[] = [];
 
-  //using the defined constants, bin the collectionHashes into a elemental type object: filter based on Guardian class and subclass if applicable
-  //if activity chosen is
+    //using the defined constants, bin the collectionHashes into a elemental type object: filter based on Guardian class and subclass if applicable
+    let playerArmor:elementalTypes = {neutral:[], stasis:[], strand:[], solar:[], void:[], arc:[]};
+    let playerWeapons:elementalTypes = {neutral:[], stasis:[], strand:[], solar:[], void:[], arc:[]};
+    
+    for(var collectionHash in collectionHashes)
+    {
+        //search weapons & armor
+        playerWeapons = searchExoticWeapons(collectionHash, playerWeapons);
+        playerArmor = searchGuardianClass(guardianClass, collectionHash, playerArmor);
+    }
+  
+  //if activity chosen is vanguard ==> (3) subclass exotic amor, (2) neutral game armor, (3) subclass weapons, (2) neutral weapons
+  //                        crucible ==>  (1) subclass exotic amor, (4) neutral game armor, (0) subclass weapons, (5) neutral weapons
+  //                        gambit ==>  (4) subclass exotic amor, (1) neutral game armor, (4) subclass weapons, (1) neutral weapons
+  //                        raid ==>  (4) subclass exotic amor, (1) neutral game armor, (1) subclass weapons, (1) neutral weapons
+
+
+
   //return loadouts
 
-
   return loadouts;
+}
+
+//ugly branching below, venture ahead at your own risk
+
+function searchExoticWeapons(collectionHash:string, playerWeapons:elementalTypes):elementalTypes
+{
+    if(primaryExotics.neutral.includes(collectionHash))
+    {
+        playerWeapons.neutral.push(collectionHash);
+    }
+    else if(primaryExotics.stasis.includes(collectionHash))
+    {
+        playerWeapons.stasis.push(collectionHash);
+    }
+    else if(primaryExotics.strand.includes(collectionHash))
+    {
+        playerWeapons.strand.push(collectionHash);
+    }
+    else if(primaryExotics.solar.includes(collectionHash))
+    {
+        playerWeapons.solar.push(collectionHash);
+    }
+    else if(primaryExotics.arc.includes(collectionHash))
+    {
+        playerWeapons.arc.push(collectionHash);
+    }
+    else if(primaryExotics.void.includes(collectionHash))
+    {
+        playerWeapons.void.push(collectionHash);
+    }
+    else if(specialExotics.neutral.includes(collectionHash))
+    {
+        playerWeapons.neutral.push(collectionHash);
+    }
+    else if(specialExotics.stasis.includes(collectionHash))
+    {
+        playerWeapons.stasis.push(collectionHash);
+    }
+    else if(specialExotics.strand.includes(collectionHash))
+    {
+        playerWeapons.strand.push(collectionHash);
+    }
+    else if(specialExotics.solar.includes(collectionHash))
+    {
+        playerWeapons.solar.push(collectionHash);
+    }
+    else if(specialExotics.arc.includes(collectionHash))
+    {
+        playerWeapons.arc.push(collectionHash);
+    }
+    else if(specialExotics.void.includes(collectionHash))
+    {
+        playerWeapons.void.push(collectionHash);
+    }
+    else if(heavyExotics.stasis.includes(collectionHash))
+    {
+        playerWeapons.stasis.push(collectionHash);
+    }
+    else if(heavyExotics.solar.includes(collectionHash))
+    {
+        playerWeapons.solar.push(collectionHash);
+    }
+    else if(heavyExotics.arc.includes(collectionHash))
+    {
+        playerWeapons.arc.push(collectionHash);
+    }
+    else if(heavyExotics.void.includes(collectionHash))
+    {
+        playerWeapons.void.push(collectionHash);
+    }
+    
+    return playerWeapons;
+}
+
+function searchGuardianClass(guardianClass:string, collectionHash:string, playerArmor:elementalTypes):elementalTypes
+{
+    if(guardianClass.includes('Titan'))
+    {
+        if(titanExotics.arc.includes(collectionHash))
+        {
+            playerArmor.arc.push(collectionHash);
+            return playerArmor;
+        }
+        else if(titanExotics.neutral.includes(collectionHash))
+        {
+            playerArmor.neutral.push(collectionHash);
+            return playerArmor;
+        }
+        else if(titanExotics.solar.includes(collectionHash))
+        {
+            playerArmor.solar.push(collectionHash);
+            return playerArmor;
+        }
+        else if(titanExotics.void.includes(collectionHash))
+        {
+            playerArmor.void.push(collectionHash);
+            return playerArmor;
+        }
+        else if(titanExotics.stasis.includes(collectionHash))
+        {
+            playerArmor.stasis.push(collectionHash);
+            return playerArmor;
+        }
+        else if(titanExotics.strand.includes(collectionHash))
+        {
+            playerArmor.strand.push(collectionHash);
+            return playerArmor;
+        }
+
+        return playerArmor;
+    }
+    else if(guardianClass.includes('Warlock'))
+    {
+        if(warlockExotics.arc.includes(collectionHash))
+        {
+            playerArmor.arc.push(collectionHash);
+            return playerArmor;
+        }
+        else if(warlockExotics.neutral.includes(collectionHash))
+        {
+            playerArmor.neutral.push(collectionHash);
+            return playerArmor;
+        }
+        else if(warlockExotics.solar.includes(collectionHash))
+        {
+            playerArmor.solar.push(collectionHash);
+            return playerArmor;
+        }
+        else if(warlockExotics.void.includes(collectionHash))
+        {
+            playerArmor.void.push(collectionHash);
+            return playerArmor;
+        }
+        else if(warlockExotics.stasis.includes(collectionHash))
+        {
+            playerArmor.stasis.push(collectionHash);
+            return playerArmor;
+        }
+        else if(warlockExotics.strand.includes(collectionHash))
+        {
+            playerArmor.strand.push(collectionHash);
+            return playerArmor;
+        }
+
+        return playerArmor;
+    }
+    else
+    {
+        if(hunterExotics.arc.includes(collectionHash))
+        {
+            playerArmor.arc.push(collectionHash);
+            return playerArmor;
+        }
+        else if(hunterExotics.neutral.includes(collectionHash))
+        {
+            playerArmor.neutral.push(collectionHash);
+            return playerArmor;
+        }
+        else if(hunterExotics.solar.includes(collectionHash))
+        {
+            playerArmor.solar.push(collectionHash);
+            return playerArmor;
+        }
+        else if(hunterExotics.void.includes(collectionHash))
+        {
+            playerArmor.void.push(collectionHash);
+            return playerArmor;
+        }
+        else if(hunterExotics.stasis.includes(collectionHash))
+        {
+            playerArmor.stasis.push(collectionHash);
+            return playerArmor;
+        }
+        else if(hunterExotics.strand.includes(collectionHash))
+        {
+            playerArmor.strand.push(collectionHash);
+            return playerArmor;
+        }
+
+        return playerArmor;
+    }
 }
 
 export { calculateLoadouts };
