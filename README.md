@@ -15,16 +15,15 @@ Directory Structure: \
 D2Coach \
 |_ Archive \
 &emsp;|_ devlogs \
-| \
 |_ D2CoachTestV2 \
 &emsp;  |_ public \
-&nbsp &nbsp &nbsp &nbsp  |_ src \
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ pages \
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ components \
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ styles \
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ assets \
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp      |_ Images \
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp      |_ Manifest \
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ apiRequests \
+&emsp;  |_ src \
+&emsp;&emsp;    |_ pages \
+&emsp;&emsp;   |_ components \
+&emsp;&emsp;    |_ styles \
+&emsp;&emsp;    |_ assets \
+&emsp;&emsp;&emsp;     |_ Images \
+&emsp;&emsp;&emsp;   |_ Manifest \
+&emsp;&emsp;    |_ apiRequests \
 How to run the software: //TODO write a description of how to run the software once we have code to run \
 Download Git LFS at https://git-lfs.com/ and follow the installation instructions listed there
