@@ -19,8 +19,8 @@ interface FormData {
 
 const LoadoutBuilder: React.FC = () => {
   let defaultValues: FormData = {
-    Activity: 'Crucible',
-    Class: 'Titan',
+    Activity: 'Raid',
+    Class: 'Hunter',
     Subclass:'',
     Role:''};
 
@@ -121,7 +121,7 @@ const LoadoutBuilder: React.FC = () => {
   
   let loadouts = calculateLoadouts(collectibleHashes, formStatus.Activity, formStatus.Class, formStatus.Subclass, formStatus.Role);
 
-  console.log(loadouts);
+  console.log("Loadouts returned: ", loadouts);
 
   let weaponCollectibleData:any[] = [];
   let armorCollectibleData:any[] = [];
@@ -172,8 +172,8 @@ const LoadoutBuilder: React.FC = () => {
     }
   }
 
-  console.log(exoticArmorIcons);
-  console.log(exoticWeaponsIcons);
+  console.log("Armor icon data: ", exoticArmorIcons);
+  console.log("Weapon icon data: ", exoticWeaponsIcons);
 
   //query the manifest with their hashes
   //display their icons in the loadoutDisplay
