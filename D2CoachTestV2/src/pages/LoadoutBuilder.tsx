@@ -8,6 +8,7 @@ import convertToSignedInt from '../components/UnsignedToSigned';
 import {useForm} from "react-hook-form";
 import {LoadoutItems, calculateLoadouts} from '../components/CalculateLoadouts';
 import destinyCollectibles from '../assets/Manifest/DestinyCollectibleDefinition.json';
+import getAccInfo from '../apiRequests/getNeededAccData';
 
 
 interface FormData {
@@ -16,6 +17,8 @@ interface FormData {
   Subclass: string;
   Role: string;
 };
+
+getAccInfo();
 
 const LoadoutBuilder: React.FC = () => {
   let defaultValues: FormData = {

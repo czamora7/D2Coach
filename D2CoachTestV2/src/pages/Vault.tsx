@@ -9,12 +9,15 @@ import axios from 'axios';
 import Loading from '../components/Loading.tsx';
 import destinyInventoryItem from '../assets/Manifest/DestinyInventoryItemDefinition.json';
 import convertToSignedInt from '../components/UnsignedToSigned.tsx';
+import getAccInfo from '../apiRequests/getNeededAccData.tsx';
 
 interface vaultItem {
   icon:string;
   itemType:number;
   damageType:number;
 }
+
+getAccInfo();
 
 const Vault: React.FC = () => {
 
