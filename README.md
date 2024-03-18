@@ -14,17 +14,17 @@ How to obtain the source code: //TODO
 Directory Structure: \
 D2Coach \
 |_ Archive \
-  |_ devlogs \
+&nbsp &nbsp &nbsp &nbsp  |_ devlogs \
 | \
 |_ D2CoachTestV2 \
-  |_ public \
-  |_ src \
-    |_ pages \
-    |_ components \
-    |_ styles \
-    |_ assets \
-      |_ Images \
-      |_ Manifest \
-    |_ apiRequests \
+&nbsp &nbsp &nbsp &nbsp  |_ public \
+&nbsp &nbsp &nbsp &nbsp  |_ src \
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ pages \
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ components \
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ styles \
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ assets \
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp      |_ Images \
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp      |_ Manifest \
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    |_ apiRequests \
 How to run the software: //TODO write a description of how to run the software once we have code to run \
 Download Git LFS at https://git-lfs.com/ and follow the installation instructions listed there
