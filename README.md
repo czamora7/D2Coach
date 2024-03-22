@@ -7,7 +7,7 @@ Alou Sidibe
 Cameron Zamora  
 Nehemiah Fields  
 
-Front-End Frameworks: Vite, React.js \
+Front-End Frameworks: Vite, React.js 
 
 Directory Structure: \
 D2Coach \
