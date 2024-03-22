@@ -22,7 +22,7 @@ D2Coach \
 &emsp;&emsp;    |_ assets \
 &emsp;&emsp;&emsp;     |_ Images \
 &emsp;&emsp;&emsp;   |_ Manifest \
-&emsp;&emsp;    |_ apiRequests \
+&emsp;&emsp;    |_ apiRequests 
 
 How to run this software: \
 Download Node.js at https://nodejs.org/en/download/current \
