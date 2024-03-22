@@ -7,9 +7,7 @@ Alou Sidibe
 Cameron Zamora  
 Nehemiah Fields  
 
-Front-End Frameworks: \
-
-How to obtain the source code: //TODO
+Front-End Frameworks: Vite, React.js \
 
 Directory Structure: \
 D2Coach \
@@ -26,7 +24,7 @@ D2Coach \
 &emsp;&emsp;&emsp;   |_ Manifest \
 &emsp;&emsp;    |_ apiRequests \
 
-How to run the software: \
+How to run this software: \
 Download Node.js at https://nodejs.org/en/download/current \
 Download Git LFS at https://git-lfs.com/ and follow the installation instructions listed there \
 In your favorite command line application, do the following: \
