@@ -25,5 +25,11 @@ D2Coach \
 &emsp;&emsp;&emsp;     |_ Images \
 &emsp;&emsp;&emsp;   |_ Manifest \
 &emsp;&emsp;    |_ apiRequests \
-How to run the software: //TODO write a description of how to run the software once we have code to run \
-Download Git LFS at https://git-lfs.com/ and follow the installation instructions listed there
+
+How to run the software: \
+Download Node.js at https://nodejs.org/en/download/current \
+Download Git LFS at https://git-lfs.com/ and follow the installation instructions listed there \
+In your favorite command line application, do the following: \
+git clone https://github.com/czamora7/D2Coach \
+cd D2Coach/D2CoachTestV2 \
+npm run dev 
