@@ -31,4 +31,4 @@ In your favorite command line application, do the following: \
 git clone https://github.com/czamora7/D2Coach \
 cd D2Coach/D2CoachTestV2 \
 npm run dev \
-Note: a valid Bungie.net account with at least one exotic weapon and armor piece unlocked is required to run this software.
+Note: a valid Bungie.net account with at least one exotic weapon and armor piece unlocked in the video game Destiny 2 is required to run this software.
