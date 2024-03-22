@@ -30,4 +30,5 @@ Download Git LFS at https://git-lfs.com/ and follow the installation instruction
 In your favorite command line application, do the following: \
 git clone https://github.com/czamora7/D2Coach \
 cd D2Coach/D2CoachTestV2 \
-npm run dev 
+npm run dev \
+Note: a valid Bungie.net account with at least one exotic weapon and armor piece unlocked is required to run this software.
