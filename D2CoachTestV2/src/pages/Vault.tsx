@@ -17,8 +17,6 @@ interface vaultItem {
   damageType:number;
 }
 
-getAccInfo();
-
 const Vault: React.FC = () => {
 
   //call get Inventory here

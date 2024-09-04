@@ -22,9 +22,9 @@ getAccInfo();
 
 const LoadoutBuilder: React.FC = () => {
   let defaultValues: FormData = {
-    Activity: 'Raid',
-    Class: 'Hunter',
-    Subclass:'',
+    Activity: 'Vanguard',
+    Class: 'Warlock',
+    Subclass:'Arc',
     Role:''};
 
   const [exoticArmorResponse,setExoticArmorResponse] = useState<any>([]);
